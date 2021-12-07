@@ -2,16 +2,18 @@ package edu.neu.csye6200.model;
 
 public class Teacher extends Person {
     private int credits;
+    private int teacherID;
 
     public Teacher(){}
 
-    public Teacher(int credits) {
-        this.credits = credits;
+    public Teacher(int teacherID) {
+        this.teacherID = teacherID;
     }
 
-    public Teacher(int age, String name, int credits) {
+    public Teacher(int age, String name, int credits, int teacherID) {
         super(age, name);
         this.credits = credits;
+        this.teacherID = teacherID;
     }
 
     public Teacher(int age, String name) {
@@ -26,13 +28,12 @@ public class Teacher extends Person {
         this.credits = credits;
     }
 
-    @Override
-    public String toString() {
-        return "Teacher{" +
-                "age=" + this.getAge() +
-                "credits=" + credits +
-                ", name='" + this.getName() + '\'' +
-                '}';
+    public int getTeacherID() {
+        return teacherID;
+    }
+
+    public void setTeacherID(int teacherID) {
+        this.teacherID = teacherID;
     }
 }
 

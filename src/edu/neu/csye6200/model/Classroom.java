@@ -5,8 +5,9 @@ import java.util.*;
 public class Classroom {
     private int capacity;
 
-    private static List<Student> studentList = new ArrayList<>();
-    private static List<Teacher> teacherList = new ArrayList<>();
+    private  List<Student> studentList = new ArrayList<>();
+    private  List<Teacher> teacherList = new ArrayList<>();
+    private  List<Group> groupList = new ArrayList<>();
 
     public int getCapacity() {
         return capacity;
@@ -16,17 +17,54 @@ public class Classroom {
         this.capacity = capacity;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("The classroom capacity is ").append(getCapacity()).append("\n");
-        for(Student student : studentList) {
-            sb.append(student.toString()).append("\n");
-        }
-        sb.append("\n");
-        for(Person person : studentList) {
-            sb.append(person.toString()).append("\n");
-        }
-        return sb.toString();
+    public void addStudent(Student student){
+        studentList.add(student);
     }
+
+    public void delStudent(Student student){
+        studentList.remove(student);
+    }
+
+    public int getNumOfStudents(){
+        return this.studentList.size();
+    }
+
+    public List<Student> getStudentList() {
+        return studentList;
+    }
+
+
+    public void addTeacher(Teacher teacher){
+        teacherList.add(teacher);
+    }
+
+    public void delTeacher(Teacher teacher){
+        teacherList.remove(teacher);
+    }
+
+    public int getNumOfTeachers(){
+        return this.teacherList.size();
+    }
+
+    public List<Teacher> getTeacherList() {
+        return teacherList;
+    }
+
+
+    public void addGroup(Group group){
+        groupList.add(group);
+    }
+
+    public void delGroup(Group group){
+        groupList.remove(group);
+    }
+
+    public int getNumOfGroups(){
+        return this.groupList.size();
+    }
+
+    public List<Group> getGroupList() {
+        return groupList;
+    }
+
 }
