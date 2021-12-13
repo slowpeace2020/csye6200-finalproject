@@ -36,5 +36,11 @@ public class Student extends Person {
         this.studentID = studentID;
     }
 
-
+    @Override
+    public String toString() {
+        return super.toString() + "Student{" +
+                "gpa=" + gpa +
+                ", studentID=" + studentID +
+                '}';
+    }
 }

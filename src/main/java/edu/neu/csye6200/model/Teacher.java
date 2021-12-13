@@ -35,5 +35,13 @@ public class Teacher extends Person {
     public void setTeacherID(int teacherID) {
         this.teacherID = teacherID;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Teacher{" +
+                "credits=" + credits +
+                ", teacherID=" + teacherID +
+                '}';
+    }
 }
 
