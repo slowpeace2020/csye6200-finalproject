@@ -4,39 +4,50 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Group {
-    private Teacher teacher;
-    private List<Student> studentList = new ArrayList<>();
-    private int groupID;
+        private Teacher teacher;
+        private List<Student> students = new ArrayList<>();
+        private int groupSize;
 
-    public Teacher getTeacher() {
-        return this.teacher;
-    }
+  public Group(Teacher teacher, List<Student> students, int groupSize) {
+    this.teacher = teacher;
+    this.students = students;
+    this.groupSize = groupSize;
+  }
 
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
-    }
+  public void setGroupSize(int groupSize) {
+            this.groupSize = groupSize;
+        }
 
-    public void addStudent(Student student){
-        studentList.add(student);
-    }
+        public int getGroupSize() {
+            return this.groupSize;
+        }
 
-    public void delStudent(Student student){
-        studentList.remove(student);
-    }
+        public void addStudents(Student s) {
+            students.add(s);
+        }
 
-    public int getNumOfStudents(){
-        return this.studentList.size();
-    }
+  public void addStudentList(List<Student> studentList) {
+    students.addAll(studentList);
+  }
 
-    public List<Student> getStudentList() {
-        return studentList;
-    }
+        public void assignTeacher(Teacher t) {
+            teacher = t;
+        }
 
-    public int getGroupID() {
-        return groupID;
-    }
+        public Teacher getTeacher() {
+            return this.teacher;
+        }
 
-    public void setGroupID(int groupID) {
-        this.groupID = groupID;
-    }
+        public List<Student> getStudents() {
+            return this.students;
+        }
+
+        @Override
+        public String toString() {
+            return students.toString();
+        }
+
+
+
+
 }
