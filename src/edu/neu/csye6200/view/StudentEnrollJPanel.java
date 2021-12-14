@@ -5,6 +5,13 @@
  */
 package edu.neu.csye6200.view;
 
+import edu.neu.csye6200.model.Student;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author yuenasu
@@ -14,10 +21,14 @@ public class StudentEnrollJPanel extends javax.swing.JPanel {
     /**
      * Creates new form StudentEnrollJPanel
      */
+    List<Student> students = new ArrayList<Student>();
+
     public StudentEnrollJPanel() {
         initComponents();
+       
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

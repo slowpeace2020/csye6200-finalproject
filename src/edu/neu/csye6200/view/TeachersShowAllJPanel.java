@@ -5,6 +5,13 @@
  */
 package edu.neu.csye6200.view;
 
+import edu.neu.csye6200.controller.TeacherController;
+import edu.neu.csye6200.model.Teacher;
+import java.awt.CardLayout;
+import java.util.List;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author yuenasu
@@ -14,8 +21,16 @@ public class TeachersShowAllJPanel extends javax.swing.JPanel {
     /**
      * Creates new form TeachersShowAllJPanel
      */
-    public TeachersShowAllJPanel() {
+    private JPanel userProcessContainer;
+    
+    TeacherController teacherController = new TeacherController();
+    List<Teacher> teachers = teacherController.getList();
+    
+    public TeachersShowAllJPanel(JPanel userProcessContainer, List<Teacher> teachers) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.teachers = teachers;
+        populateTable();
     }
 
     /**
@@ -33,7 +48,7 @@ public class TeachersShowAllJPanel extends javax.swing.JPanel {
         btnAdd = new javax.swing.JButton();
         btnModify = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblVaccineRecord = new javax.swing.JTable();
+        tblTeacher = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -51,28 +66,20 @@ public class TeachersShowAllJPanel extends javax.swing.JPanel {
 
         btnModify.setText("Modify");
 
-        tblVaccineRecord.setModel(new javax.swing.table.DefaultTableModel(
+        tblTeacher.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Teacher Name", "Teacher Score", "Has a Group?"
+                "ID", "First Name", "Last Name", "Age", "Joining Date", "Email", "Credits/Score"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        tblVaccineRecord.setColumnSelectionAllowed(true);
-        jScrollPane1.setViewportView(tblVaccineRecord);
-        tblVaccineRecord.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        ));
+        tblTeacher.setColumnSelectionAllowed(true);
+        jScrollPane1.setViewportView(tblTeacher);
+        tblTeacher.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -103,6 +110,11 @@ public class TeachersShowAllJPanel extends javax.swing.JPanel {
         );
 
         jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setText("View Teachers");
@@ -166,6 +178,12 @@ public class TeachersShowAllJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
@@ -177,6 +195,25 @@ public class TeachersShowAllJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblVaccineRecord;
+    private javax.swing.JTable tblTeacher;
     // End of variables declaration//GEN-END:variables
+
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) tblTeacher.getModel();
+        model.setRowCount(0);
+        
+        for (Teacher s : teachers){
+            String[] row = new String[7];
+            row[0] = String.valueOf(s.getTeacherID());
+            row[1] = s.getFirstName();
+            row[2] = s.getLastName();
+            row[3] = String.valueOf(s.getAge());
+            row[4] = String.valueOf(s.getJoiningDate());
+            row[5] = s.getEmail();
+            row[6] = String.valueOf(s.getCredits());
+            
+            model.addRow(row);
+            
+        }
+    }
 }
