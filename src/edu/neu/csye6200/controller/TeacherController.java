@@ -8,7 +8,7 @@ import java.util.List;
 
 public class TeacherController extends Controller<Teacher> {
    private  List<Teacher> teachers;
-   private static String defaultFilePath ="teachers.csv";
+  private static String defaultFilePath =System.getProperty("user.dir")+"/data/teachers.csv";
 
   public TeacherController(){
     this(defaultFilePath);

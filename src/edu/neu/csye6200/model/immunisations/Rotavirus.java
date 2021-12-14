@@ -1,9 +1,22 @@
 package edu.neu.csye6200.model.immunisations;
+import static edu.neu.csye6200.utils.DataTypeSwitchUtil.DateToString;
+
 import edu.neu.csye6200.model.Student;
 import java.util.Date;
 import java.util.List;
 
 public class Rotavirus extends AbstractImmunization {
+
+	@Override
+	public String toString() {
+		String dateStrings ="";
+		for(Date date:immuDate){
+			dateStrings += DateToString(date)+",";
+		}
+
+		dateStrings.substring(0,dateStrings.length()-1);
+		return dateStrings;
+	}
 
 	Rotavirus(String name, List<Date> immuDate, int age) {
 		this.immunizationName = name;

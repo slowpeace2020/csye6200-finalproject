@@ -34,9 +34,7 @@ public class FileUtil {
 	//This function reads the file and returns a string
 	public static List<String> readTextFile(String fileName) {
 		List<String> entries = new ArrayList<>();
-		File file = new File("");
-		String prefixPath = file.getAbsolutePath();
-		try (BufferedReader bufferedReader =  new BufferedReader(new FileReader(prefixPath+ "/data/" +fileName))
+		try (BufferedReader bufferedReader =  new BufferedReader(new FileReader(fileName))
 				) {
 			String line ="";
 			while((line = bufferedReader.readLine())!=null) {
