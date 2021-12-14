@@ -5,6 +5,13 @@
  */
 package edu.neu.csye6200.view;
 
+import edu.neu.csye6200.controller.StudentController;
+import edu.neu.csye6200.model.Student;
+import java.awt.CardLayout;
+import java.util.List;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author yuenasu
@@ -14,8 +21,17 @@ public class StudentsShowAllJPanel extends javax.swing.JPanel {
     /**
      * Creates new form StudentsShowAllJPanel
      */
-    public StudentsShowAllJPanel() {
+    private JPanel userProcessContainer;
+    
+    StudentController studentController = new StudentController();
+    List<Student> students = studentController.getList();
+    
+    public StudentsShowAllJPanel(JPanel userProcessContainer,List<Student> students) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.students = students;
+        populateTable();
+        
     }
 
     /**
@@ -52,23 +68,15 @@ public class StudentsShowAllJPanel extends javax.swing.JPanel {
 
         tblStudent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Student Name", "Age (Months)", "Has a Group?"
+                "ID", "First Name", "Last Name", "Age (Months)", "Guardian Name", "Guardian Email", "Registration Date", "Birthday"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        ));
         tblStudent.setColumnSelectionAllowed(true);
         jScrollPane1.setViewportView(tblStudent);
         tblStudent.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
@@ -102,6 +110,11 @@ public class StudentsShowAllJPanel extends javax.swing.JPanel {
         );
 
         jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setText("View Students");
@@ -144,6 +157,12 @@ public class StudentsShowAllJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
@@ -156,4 +175,24 @@ public class StudentsShowAllJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblStudent;
     // End of variables declaration//GEN-END:variables
+
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) tblStudent.getModel();
+        model.setRowCount(0);
+        
+        for (Student s : students){
+            String[] row = new String[8];
+            row[0] = String.valueOf(s.getStudentID());
+            row[1] = s.getFirstName();
+            row[2] = s.getLastName();
+            row[3] = String.valueOf(s.getAge());
+            row[4] = s.getGuardianName();
+            row[5] = s.getGuardianEmail();
+            row[6] = String.valueOf(s.getRegistrationDate());
+            row[7] = String.valueOf(s.getBirthDay());
+            model.addRow(row);
+            
+        }
+    }
+    
 }
