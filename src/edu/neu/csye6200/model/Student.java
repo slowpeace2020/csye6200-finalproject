@@ -14,7 +14,6 @@ import java.util.List;
 public class Student extends Person {
     private double gpa;
     private int studentID;
-    private int age;
     private String firstName;
     private String lastName;
     private String address;
@@ -71,7 +70,7 @@ public class Student extends Person {
         this.phoneNumber = field[6];
         this.guardianName = field[7];
         this.guardianEmail = field[8];
-        this.age = DataTypeSwitchUtil.DateToAge(this.birthDay);
+        setAge(DataTypeSwitchUtil.DateToAge(this.birthDay));
         Calendar c = Calendar.getInstance();
         c.setTime(this.registrationDate);
         c.add(c.YEAR, 1);
@@ -104,11 +103,29 @@ public class Student extends Person {
 
         }
 
-        immunisations.add(DTaPFactory.getInstance().getObject("DTaP",DTaP,this.age));
-        immunisations.add(RotavirusFactory.getInstance().getObject("Rotavirus", rotavirus, this.age));
-        immunisations.add(HepatitisBFactory.getInstance().getObject("Hepatitis B",hepatitisB, this.age));
-        immunisations.add(PneumococcalConjugateFactory.getInstance().getObject("Pneumococcal Conjugate",pneumococcalConjugate, this.age));
+        immunisations.add(DTaPFactory.getInstance().getObject("DTaP",DTaP,getAge()));
+        immunisations.add(RotavirusFactory.getInstance().getObject("Rotavirus", rotavirus, getAge()));
+        immunisations.add(HepatitisBFactory.getInstance().getObject("Hepatitis B",hepatitisB, getAge()));
+        immunisations.add(PneumococcalConjugateFactory.getInstance().getObject("Pneumococcal Conjugate",pneumococcalConjugate, getAge()));
 
     }
 
+    @Override
+    public String toString() {
+        return "Student{" +
+            "gpa=" + gpa +
+            ", studentID=" + studentID +
+            ", age=" + getAge() +
+            ", firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            ", address='" + address + '\'' +
+            ", phoneNumber='" + phoneNumber + '\'' +
+            ", guardianName='" + guardianName + '\'' +
+            ", guardianEmail='" + guardianEmail + '\'' +
+            ", birthDay=" + birthDay +
+            ", registrationDate=" + registrationDate +
+            ", immunisations=" + immunisations +
+            ", annualRegistrationDate=" + annualRegistrationDate +
+            '}';
+    }
 }

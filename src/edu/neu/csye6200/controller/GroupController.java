@@ -1,26 +1,35 @@
 package edu.neu.csye6200.controller;
 
-import edu.neu.csye6200.model.Classroom;
 import edu.neu.csye6200.model.Group;
 import edu.neu.csye6200.model.Student;
 import edu.neu.csye6200.model.Teacher;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class GroupController extends Controller<Group> {
-  private List<Student> students;
-  private List<Teacher> teachers;
-  private Map<Integer,List<Group>> groups;
+  private List<Student> students = new ArrayList<>();
+  private List<Teacher> teachers = new ArrayList<>();
+  private Map<Integer,List<Group>> groups = new HashMap<>();
+
+  public Map<Integer, List<Group>> getGroups() {
+    return groups;
+  }
+
+  public void setGroups(
+      Map<Integer, List<Group>> groups) {
+    this.groups = groups;
+  }
+
 
   private int[] groupSizeByAge = new int[]{4,5,6,8,12,15};
 
   public GroupController(List<Student> students,List<Teacher> teachers){
     this.students = students;
     this.teachers = teachers;
-     getList();
+    getGroupList();
   }
 
   public void getGroupList() {
@@ -49,7 +58,9 @@ public class GroupController extends Controller<Group> {
 
   @Override
   public List<Group> getList() {
-    return null;
+    List<Group> list = new ArrayList<>();
+    groups.values().forEach(groupsingleList->list.addAll(groupsingleList));
+    return list;
   }
 
   @Override
@@ -91,7 +102,6 @@ public class GroupController extends Controller<Group> {
     //age between 36-47
     List<Student> thirtySixToFortySeven = students.stream().filter(student -> student.getAge() >= 36 && student.getAge() <= 47).collect(
         Collectors.toList());
-
     //age between 48-59
     List<Student> fortyEightToFiftyNine = students.stream().filter(student -> student.getAge() >= 48 && student.getAge() <= 59).collect(Collectors.toList());
 

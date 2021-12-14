@@ -26,8 +26,6 @@ public class StudentController extends Controller<Student> {
     students= new ArrayList<>();
     List<String> tempStudents = FileUtil.readTextFile(filePath);
     tempStudents.forEach(student -> students.add(new Student(student)));
-    System.out.println(tempStudents);
-
   }
 
   @Override

@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class ClassRoomController extends Controller<Classroom>{
 
-  public List<Classroom> getClassRoomList() {
+  public List<Classroom> getList() {
     return classRoomList;
   }
 
@@ -27,12 +27,11 @@ public class ClassRoomController extends Controller<Classroom>{
   public ClassRoomController(Map<Integer,List<Group>> groups) {
     this.groups = groups;
     classRoomList = new ArrayList<>();
-    getList();
+    getClassRoomList();
   }
 
 
-  @Override
-  public List<Classroom> getList() {
+  public List<Classroom> getClassRoomList() {
 
     for(Integer groupId:groups.keySet()){
       List<Group> groupList = groups.get(groupId);
