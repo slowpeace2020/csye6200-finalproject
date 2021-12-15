@@ -5,6 +5,7 @@
  */
 package edu.neu.csye6200.view;
 
+import javax.swing.JPanel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -32,6 +33,10 @@ public class LoginJPanel extends javax.swing.JDialog {
         @Override
         public void changedUpdate(DocumentEvent e) { updateButtonActiveState(); }
     };
+
+    LoginJPanel(JPanel userProcessContainer) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     private void updateButtonActiveState()
     {

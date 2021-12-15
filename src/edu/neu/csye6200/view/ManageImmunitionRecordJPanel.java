@@ -13,6 +13,7 @@ import edu.neu.csye6200.utils.DataTypeSwitchUtil;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -33,6 +34,10 @@ public class ManageImmunitionRecordJPanel extends javax.swing.JPanel {
    // immunizationContorller.getImmunizationInfo(students);
     public ManageImmunitionRecordJPanel() {
         initComponents();
+    }
+
+    ManageImmunitionRecordJPanel(JPanel userProcessContainer) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
          
 

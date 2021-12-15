@@ -7,6 +7,7 @@ package edu.neu.csye6200.view;
 
 import edu.neu.csye6200.controller.ImmunizationContorller;
 import edu.neu.csye6200.model.Person;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,6 +23,10 @@ public class AlertJPanel extends javax.swing.JPanel {
     public AlertJPanel() {
         initComponents();
         populateTable();
+    }
+
+    AlertJPanel(JPanel userProcessContainer) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     private void populateTable() {
        //To change body of generated methods, choose Tools | Templates.

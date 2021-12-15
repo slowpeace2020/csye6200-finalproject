@@ -1,4 +1,4 @@
-package edu.neu.csye6200.controller;
+package edu.neu.csye6200.utils;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;

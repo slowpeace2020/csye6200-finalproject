@@ -5,6 +5,8 @@
  */
 package edu.neu.csye6200.view;
 
+import java.awt.CardLayout;
+import javax.swing.JPanel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -17,13 +19,13 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form ApplicationMainJFrame
      */
+   
+     private JPanel userProcessContainer;
     public ApplicationMainJFrame() {
         initComponents();
-        DefaultTreeModel model=(DefaultTreeModel)jTree.getModel();
-        DefaultMutableTreeNode panel=new DefaultMutableTreeNode("Choose Panel");
-        DefaultMutableTreeNode root=(DefaultMutableTreeNode)model.getRoot();
-        root.insert(panel, WIDTH);
+        this.userProcessContainer=userProcessContainer;
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,7 +44,7 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
         btnManageClassroom = new javax.swing.JButton();
         btnManageImmunition = new javax.swing.JButton();
         btnManageAlert = new javax.swing.JButton();
-        splitViewContentPanel = new javax.swing.JPanel();
+        userProcessContainerJPanel = new javax.swing.JPanel();
         placeholderLabel = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
@@ -60,12 +62,14 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
         splitPanel.setDividerSize(10);
         splitPanel.setName(""); // NOI18N
 
-        splitViewMenuScrollPanel.setBackground(new java.awt.Color(102, 102, 102));
         splitViewMenuScrollPanel.setMinimumSize(new java.awt.Dimension(200, 23));
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
-
         btnManageStudent.setText("Manage Student Area");
+        btnManageStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageStudentActionPerformed(evt);
+            }
+        });
 
         btnManageTeacher.setText("Manage Teacher Area");
         btnManageTeacher.addActionListener(new java.awt.event.ActionListener() {
@@ -75,10 +79,25 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
         });
 
         btnManageClassroom.setText("Manage Classroom Area");
+        btnManageClassroom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageClassroomActionPerformed(evt);
+            }
+        });
 
         btnManageImmunition.setText("Manage Immunition Area");
+        btnManageImmunition.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageImmunitionActionPerformed(evt);
+            }
+        });
 
         btnManageAlert.setText("Manage Alert Area");
+        btnManageAlert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageAlertActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -86,13 +105,13 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnManageTeacher)
-                    .addComponent(btnManageImmunition)
-                    .addComponent(btnManageStudent)
-                    .addComponent(btnManageAlert, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnManageClassroom))
-                .addContainerGap(188, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnManageImmunition, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnManageClassroom, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnManageTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnManageStudent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnManageAlert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(569, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnManageAlert, btnManageClassroom, btnManageImmunition, btnManageStudent, btnManageTeacher});
@@ -100,7 +119,7 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(211, Short.MAX_VALUE)
+                .addContainerGap(206, Short.MAX_VALUE)
                 .addComponent(btnManageStudent)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnManageTeacher)
@@ -109,7 +128,8 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnManageImmunition)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnManageAlert, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnManageAlert, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(67, 67, 67))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnManageAlert, btnManageClassroom, btnManageImmunition, btnManageStudent, btnManageTeacher});
@@ -118,17 +138,15 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
 
         splitPanel.setLeftComponent(splitViewMenuScrollPanel);
 
-        splitViewContentPanel.setLayout(new java.awt.BorderLayout());
+        userProcessContainerJPanel.setLayout(new java.awt.BorderLayout());
 
         placeholderLabel.setForeground(new java.awt.Color(102, 102, 102));
         placeholderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         placeholderLabel.setText("Select a panel from the left");
         placeholderLabel.setAlignmentX(0.5F);
-        splitViewContentPanel.add(placeholderLabel, java.awt.BorderLayout.CENTER);
+        userProcessContainerJPanel.add(placeholderLabel, java.awt.BorderLayout.CENTER);
 
-        splitPanel.setRightComponent(splitViewContentPanel);
-
-        getContentPane().add(splitPanel, java.awt.BorderLayout.CENTER);
+        splitPanel.setRightComponent(userProcessContainerJPanel);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -163,6 +181,11 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
 
         loginMenuItem.setMnemonic('t');
         loginMenuItem.setText("Login");
+        loginMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginMenuItemActionPerformed(evt);
+            }
+        });
         loginMenu.add(loginMenuItem);
 
         logoutMenuItem.setMnemonic('t');
@@ -173,6 +196,17 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
 
         setJMenuBar(menuBar);
 
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(splitPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1115, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(splitPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
+        );
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -180,9 +214,53 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
+    private void loginMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginMenuItemActionPerformed
+        // TODO add your handling code here:
+        LoginJPanel loginJPanel = new LoginJPanel(userProcessContainer);
+        userProcessContainer.add("loginJPanel", loginJPanel);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);    
+    }//GEN-LAST:event_loginMenuItemActionPerformed
+
+    private void btnManageStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageStudentActionPerformed
+        // TODO add your handling code here:
+        StudentsShowAllJPanel studentsShowAllJPanel = new StudentsShowAllJPanel(userProcessContainer);
+        userProcessContainer.add("studentsShowAllJPanel", studentsShowAllJPanel);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnManageStudentActionPerformed
+
     private void btnManageTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageTeacherActionPerformed
         // TODO add your handling code here:
+        TeachersShowAllJPanel teachersShowAllJPanel = new TeachersShowAllJPanel(userProcessContainer);
+        userProcessContainer.add("teachersShowAllJPanel", teachersShowAllJPanel);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnManageTeacherActionPerformed
+
+    private void btnManageClassroomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageClassroomActionPerformed
+        // TODO add your handling code here:
+        ClassroomsShowAllJPanel classroomsShowAllJPanel = new ClassroomsShowAllJPanel(userProcessContainer);
+        userProcessContainer.add("classroomsShowAllJPanel", classroomsShowAllJPanel);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnManageClassroomActionPerformed
+
+    private void btnManageImmunitionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageImmunitionActionPerformed
+        // TODO add your handling code here:
+        ManageImmunitionRecordJPanel manageImmunitionRecordJPanel = new ManageImmunitionRecordJPanel(userProcessContainer);
+        userProcessContainer.add("manageImmunitionRecordJPanel", manageImmunitionRecordJPanel);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnManageImmunitionActionPerformed
+
+    private void btnManageAlertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageAlertActionPerformed
+        // TODO add your handling code here:
+        AlertJPanel alertJPanel = new AlertJPanel(userProcessContainer);
+        userProcessContainer.add("alertJPanel", alertJPanel);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnManageAlertActionPerformed
 
     /**
      * @param args the command line arguments
@@ -237,7 +315,7 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem saveAsMenuItem;
     private javax.swing.JMenuItem saveMenuItem;
     private javax.swing.JSplitPane splitPanel;
-    public javax.swing.JPanel splitViewContentPanel;
     public javax.swing.JScrollPane splitViewMenuScrollPanel;
+    public javax.swing.JPanel userProcessContainerJPanel;
     // End of variables declaration//GEN-END:variables
 }
