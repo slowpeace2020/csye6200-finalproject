@@ -23,6 +23,8 @@ import javax.swing.table.DefaultTableModel;
  * @author ke
  */
 
+//查看某学生的疫苗记录
+
 public class ManageImmunitionRecordJPanel extends javax.swing.JPanel {
 
     /**
@@ -43,7 +45,8 @@ public class ManageImmunitionRecordJPanel extends javax.swing.JPanel {
 //   List<Student> students = studentController.getList();
 //    ImmunizationContorller immunizationContorller = new ImmunizationContorller();
 //    immunizationContorller.getImmunizationInfo(students);
-    public ManageImmunitionRecordJPanel(JPanel userProcessContainer, Vaccine immuMap,ImmunizationContorller immunizationContorller,List<Student> students) {
+
+    public ManageImmunitionRecordJPanel(JPanel userProcessContainer,ImmunizationContorller immunizationContorller,List<Student> students) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.immuMap=immunizationContorller.getList();
@@ -67,6 +70,7 @@ public class ManageImmunitionRecordJPanel extends javax.swing.JPanel {
             
             modelv.addRow(row);
             
+
         
          }
          
@@ -273,24 +277,10 @@ public class ManageImmunitionRecordJPanel extends javax.swing.JPanel {
                v.setImmuDate(DataTypeSwitchUtil.StringToDate(txtDose2Time.getText())); 
                v.setImmuDate(DataTypeSwitchUtil.StringToDate(txtDose3Time.getText())); 
 //               vaccine.add(v);
-                immunizationContorller.add(v);
+               immunizationContorller.add(v);
+               immuMap.add(v);
                 
-          DefaultTableModel model1 =(DefaultTableModel) tblVaccineRecord.getModel();
-           // Iterable<Vaccine> immuMap = null;
-            
-          
-           for(Vaccine m : immuMap){
-            Object row[]= new Object[5];
-            row[0] = m.getStudentId();
-            row[1]= m.getImmunizationName();
-            row[2]=m.getImmuDate();
-//            row[3]=m.getDose2Time();
-//            row[4]=m.getDose3Time();
-
-            
-            model1.addRow(row);  
-            
-            }
+          populate();
 
             JOptionPane.showMessageDialog(null, " ImmunitionRecord added!", "Info", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -302,6 +292,27 @@ public class ManageImmunitionRecordJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnAddRecordActionPerformed
 
+    
+    private void populate() {
+        DefaultTableModel model1 =(DefaultTableModel) tblVaccineRecord.getModel();
+           // Iterable<Vaccine> immuMap = null;
+            
+          
+           for(Vaccine m : immuMap){
+
+            Object row[]= new Object[5];
+            row[0] = m.getStudentId();
+            row[1]= m.getImmunizationName();
+            row[2]=m.getImmuDate();
+//            row[3]=m.getDose2Time();
+//            row[4]=m.getDose3Time();
+
+
+            
+            model1.addRow(row);  
+            
+            }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddRecord;
