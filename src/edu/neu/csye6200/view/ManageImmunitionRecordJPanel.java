@@ -10,6 +10,8 @@ import edu.neu.csye6200.controller.StudentController;
 import edu.neu.csye6200.model.Student;
 import edu.neu.csye6200.model.Vaccine;
 import edu.neu.csye6200.utils.DataTypeSwitchUtil;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -26,14 +28,25 @@ public class ManageImmunitionRecordJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ImmunitionJPanel
      */
+        private List<Student> students;
+        private JPanel userProcessContainer;
+        private List<Vaccine>immuMap;
+       
+        private Map<String,Integer> requiredVaccineMap = new HashMap<>();
+        
     //private Map<Integer,List<Vaccine>> immuMap;
 
 // StudentController studentController = new StudentController();
-//    List<Student> students = studentController.getList();
+//   List<Student> students = studentController.getList();
 //    ImmunizationContorller immunizationContorller = new ImmunizationContorller();
 //    immunizationContorller.getImmunizationInfo(students);
-    public ManageImmunitionRecordJPanel(JPanel userProcessContainer, List<Vaccine> vaccine) {
+    public ManageImmunitionRecordJPanel(JPanel userProcessContainer, Vaccine immuMap,ImmunizationContorller immunizationContorller) {
         initComponents();
+        this.userProcessContainer=userProcessContainer;
+        this.immuMap=(List<Vaccine>) immuMap;
+        
+
+        
     }
 
 
@@ -206,21 +219,10 @@ public class ManageImmunitionRecordJPanel extends javax.swing.JPanel {
         {
 //           List<Immunization> list = new ArrayList<>();
 //           list.get(0).getDoes1();
-          
-            DefaultTableModel model1 =(DefaultTableModel) tblVaccineRecord.getModel();
-           // Iterable<Vaccine> immuMap = null;
-            Iterable<Vaccine> immuList = null;
-         
-           for(Vaccine m : immuList){
-            Object row[]= new Object[4];
-            row[0]=m;
-            row[1]=m.getDose1Time();
-            row[2]=m.getDose2Time();
-            row[3]=m.getDose3Time();
+//            List<Vaccine> v =immuMap.getOrDefault(cmbVaccineType.getSelectedItem().toString(), new ArrayList<>());
+//            v.add(new Vaccine(immuName,date,studentId));
 
-            
-            model1.addRow(row);
-           ImmunizationContorller controller = new ImmunizationContorller();
+           ImmunizationContorller immunizationContorller = new ImmunizationContorller();
             for(int i=0;i<3;i++){
               Vaccine v = new Vaccine();
                v.setImmunizationName(String.valueOf((cmbVaccineType.getSelectedItem())));
@@ -228,9 +230,21 @@ public class ManageImmunitionRecordJPanel extends javax.swing.JPanel {
                v.setImmuDate(DataTypeSwitchUtil.StringToDate(txtDose2Time.getText())); 
                v.setImmuDate(DataTypeSwitchUtil.StringToDate(txtDose3Time.getText())); 
 //               vaccine.add(v);
-                controller.add(v);
+                immunizationContorller.add(v);
                 
-                
+          DefaultTableModel model1 =(DefaultTableModel) tblVaccineRecord.getModel();
+           // Iterable<Vaccine> immuMap = null;
+            
+          
+           for(Vaccine m : immuMap){
+            Object row[]= new Object[4];
+            row[0]=m;
+            row[1]=m.getDose1Time();
+            row[2]=m.getDose2Time();
+            row[3]=m.getDose3Time();
+
+            
+            model1.addRow(row);  
             
             }
 

@@ -5,13 +5,16 @@
  */
 package edu.neu.csye6200.view;
 
+import edu.neu.csye6200.controller.ImmunizationContorller;
 import edu.neu.csye6200.controller.StudentController;
 import edu.neu.csye6200.model.Classroom;
 import edu.neu.csye6200.model.Student;
 import edu.neu.csye6200.model.Teacher;
 import edu.neu.csye6200.model.Vaccine;
 import java.awt.CardLayout;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.swing.JPanel;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -30,12 +33,16 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
      List<Teacher> teachers;
      List<Classroom>classrooms;
      List<Vaccine> vaccine;
+        private Vaccine immuMap;
+        ImmunizationContorller immunizationContorller;
+        private Map<String,Integer> requiredVaccineMap = new HashMap<>();
     //CardLayout layout=(CardLayout)userProcessContainer.getLayout();
     public ApplicationMainJFrame() {
         initComponents();
      
         this.students = students;
         this.teachers=teachers;
+        this.immuMap=immuMap;
         
     }
 
@@ -68,7 +75,6 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
 
         splitViewMenuScrollPanel.setMinimumSize(new java.awt.Dimension(200, 23));
 
-        btnManageStudent.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         btnManageStudent.setText("Manage Student Area");
         btnManageStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,7 +82,6 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
             }
         });
 
-        btnManageTeacher.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         btnManageTeacher.setText("Manage Teacher Area");
         btnManageTeacher.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,7 +89,6 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
             }
         });
 
-        btnManageClassroom.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         btnManageClassroom.setText("Manage Classroom Area");
         btnManageClassroom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,7 +96,6 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
             }
         });
 
-        btnManageImmunition.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         btnManageImmunition.setText("Manage Immunition Area");
         btnManageImmunition.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,7 +103,6 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
             }
         });
 
-        btnManageAlert.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         btnManageAlert.setText("Manage Alert Area");
         btnManageAlert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,6 +110,7 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
             }
         });
 
+        btnLogin.setBackground(new java.awt.Color(204, 204, 204));
         btnLogin.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         btnLogin.setText("Sign in");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -200,7 +203,7 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
 
     private void btnManageImmunitionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageImmunitionActionPerformed
         // TODO add your handling code here:
-        ManageImmunitionRecordJPanel manageImmunitionRecordJPanel = new ManageImmunitionRecordJPanel(userProcessContainer,vaccine);
+        ManageImmunitionRecordJPanel manageImmunitionRecordJPanel = new ManageImmunitionRecordJPanel( userProcessContainer, immuMap, immunizationContorller);
         userProcessContainer.add("manageImmunitionRecordJPanel", manageImmunitionRecordJPanel);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
