@@ -20,14 +20,12 @@ public class AlertJPanel extends javax.swing.JPanel {
      * Creates new form ImmunitionJPanel
      */
      ImmunizationContorller controller = new ImmunizationContorller();
-    public AlertJPanel() {
+    public AlertJPanel(JPanel userProcessContainer) {
         initComponents();
         populateTable();
     }
 
-    AlertJPanel(JPanel userProcessContainer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
     private void populateTable() {
        //To change body of generated methods, choose Tools | Templates.
        

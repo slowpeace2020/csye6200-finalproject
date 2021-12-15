@@ -1,6 +1,6 @@
 package edu.neu.csye6200.controller;
 
-import edu.neu.csye6200.controller.MailUtil;
+import edu.neu.csye6200.utils.MailUtil;
 import edu.neu.csye6200.model.Person;
 import edu.neu.csye6200.model.Student;
 import edu.neu.csye6200.model.Vaccine;

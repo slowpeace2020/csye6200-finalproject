@@ -31,15 +31,11 @@ public class ManageImmunitionRecordJPanel extends javax.swing.JPanel {
 // StudentController studentController = new StudentController();
 //    List<Student> students = studentController.getList();
 //    ImmunizationContorller immunizationContorller = new ImmunizationContorller();
-   // immunizationContorller.getImmunizationInfo(students);
-    public ManageImmunitionRecordJPanel() {
+//    immunizationContorller.getImmunizationInfo(students);
+    public ManageImmunitionRecordJPanel(JPanel userProcessContainer, List<Vaccine> vaccine) {
         initComponents();
     }
 
-    ManageImmunitionRecordJPanel(JPanel userProcessContainer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-         
 
     /**
      * This method is called from within the constructor to initialize the form.

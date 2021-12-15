@@ -5,9 +5,14 @@
  */
 package edu.neu.csye6200.view;
 
+import edu.neu.csye6200.controller.StudentController;
+import edu.neu.csye6200.model.Classroom;
+import edu.neu.csye6200.model.Student;
+import edu.neu.csye6200.model.Teacher;
+import edu.neu.csye6200.model.Vaccine;
 import java.awt.CardLayout;
+import java.util.List;
 import javax.swing.JPanel;
-import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
 /**
@@ -21,9 +26,18 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
      */
    
      private JPanel userProcessContainer;
+     StudentController studentController = new StudentController();
+     List<Student> students;
+     List<Teacher> teachers;
+     List<Classroom>classrooms;
+     List<Vaccine> vaccine;
+     
     public ApplicationMainJFrame() {
         initComponents();
         this.userProcessContainer=userProcessContainer;
+        this.students = students;
+        this.teachers=teachers;
+        
     }
 
 
@@ -44,17 +58,9 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
         btnManageClassroom = new javax.swing.JButton();
         btnManageImmunition = new javax.swing.JButton();
         btnManageAlert = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
         userProcessContainerJPanel = new javax.swing.JPanel();
         placeholderLabel = new javax.swing.JLabel();
-        menuBar = new javax.swing.JMenuBar();
-        fileMenu = new javax.swing.JMenu();
-        openMenuItem = new javax.swing.JMenuItem();
-        saveMenuItem = new javax.swing.JMenuItem();
-        saveAsMenuItem = new javax.swing.JMenuItem();
-        exitMenuItem = new javax.swing.JMenuItem();
-        loginMenu = new javax.swing.JMenu();
-        loginMenuItem = new javax.swing.JMenuItem();
-        logoutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,6 +70,7 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
 
         splitViewMenuScrollPanel.setMinimumSize(new java.awt.Dimension(200, 23));
 
+        btnManageStudent.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         btnManageStudent.setText("Manage Student Area");
         btnManageStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,6 +78,7 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
             }
         });
 
+        btnManageTeacher.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         btnManageTeacher.setText("Manage Teacher Area");
         btnManageTeacher.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,6 +86,7 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
             }
         });
 
+        btnManageClassroom.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         btnManageClassroom.setText("Manage Classroom Area");
         btnManageClassroom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,6 +94,7 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
             }
         });
 
+        btnManageImmunition.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         btnManageImmunition.setText("Manage Immunition Area");
         btnManageImmunition.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,10 +102,19 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
             }
         });
 
+        btnManageAlert.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         btnManageAlert.setText("Manage Alert Area");
         btnManageAlert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageAlertActionPerformed(evt);
+            }
+        });
+
+        btnLogin.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        btnLogin.setText("Sign in");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
             }
         });
 
@@ -104,14 +123,14 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnManageImmunition, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(btnManageClassroom, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(btnManageTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(btnManageStudent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnManageAlert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(569, Short.MAX_VALUE))
+                    .addComponent(btnManageAlert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnManageStudent, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                    .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 582, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnManageAlert, btnManageClassroom, btnManageImmunition, btnManageStudent, btnManageTeacher});
@@ -119,7 +138,7 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(206, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(btnManageStudent)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnManageTeacher)
@@ -129,10 +148,12 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
                 .addComponent(btnManageImmunition)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnManageAlert, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
+                .addComponent(btnLogin)
+                .addGap(77, 77, 77))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnManageAlert, btnManageClassroom, btnManageImmunition, btnManageStudent, btnManageTeacher});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnLogin, btnManageAlert, btnManageClassroom, btnManageImmunition, btnManageStudent, btnManageTeacher});
 
         splitViewMenuScrollPanel.setViewportView(jPanel1);
 
@@ -148,54 +169,6 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
 
         splitPanel.setRightComponent(userProcessContainerJPanel);
 
-        fileMenu.setMnemonic('f');
-        fileMenu.setText("File");
-
-        openMenuItem.setMnemonic('o');
-        openMenuItem.setText("Open");
-        fileMenu.add(openMenuItem);
-
-        saveMenuItem.setMnemonic('s');
-        saveMenuItem.setText("Save");
-        fileMenu.add(saveMenuItem);
-
-        saveAsMenuItem.setMnemonic('a');
-        saveAsMenuItem.setText("Save As ...");
-        saveAsMenuItem.setDisplayedMnemonicIndex(5);
-        fileMenu.add(saveAsMenuItem);
-
-        exitMenuItem.setMnemonic('x');
-        exitMenuItem.setText("Exit");
-        exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitMenuItemActionPerformed(evt);
-            }
-        });
-        fileMenu.add(exitMenuItem);
-
-        menuBar.add(fileMenu);
-
-        loginMenu.setMnemonic('h');
-        loginMenu.setText("Login");
-        loginMenu.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-
-        loginMenuItem.setMnemonic('t');
-        loginMenuItem.setText("Login");
-        loginMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginMenuItemActionPerformed(evt);
-            }
-        });
-        loginMenu.add(loginMenuItem);
-
-        logoutMenuItem.setMnemonic('t');
-        logoutMenuItem.setText("Logout");
-        loginMenu.add(logoutMenuItem);
-
-        menuBar.add(loginMenu);
-
-        setJMenuBar(menuBar);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -204,27 +177,15 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(splitPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
+            .addComponent(splitPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_exitMenuItemActionPerformed
-
-    private void loginMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginMenuItemActionPerformed
-        // TODO add your handling code here:
-        LoginJPanel loginJPanel = new LoginJPanel(userProcessContainer);
-        userProcessContainer.add("loginJPanel", loginJPanel);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.next(userProcessContainer);    
-    }//GEN-LAST:event_loginMenuItemActionPerformed
-
     private void btnManageStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageStudentActionPerformed
         // TODO add your handling code here:
-        StudentsShowAllJPanel studentsShowAllJPanel = new StudentsShowAllJPanel(userProcessContainer);
+        StudentsShowAllJPanel studentsShowAllJPanel = new StudentsShowAllJPanel(userProcessContainer, students);
         userProcessContainer.add("studentsShowAllJPanel", studentsShowAllJPanel);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -232,7 +193,7 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
 
     private void btnManageTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageTeacherActionPerformed
         // TODO add your handling code here:
-        TeachersShowAllJPanel teachersShowAllJPanel = new TeachersShowAllJPanel(userProcessContainer);
+        TeachersShowAllJPanel teachersShowAllJPanel = new TeachersShowAllJPanel(userProcessContainer,teachers);
         userProcessContainer.add("teachersShowAllJPanel", teachersShowAllJPanel);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -240,7 +201,7 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
 
     private void btnManageClassroomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageClassroomActionPerformed
         // TODO add your handling code here:
-        ClassroomsShowAllJPanel classroomsShowAllJPanel = new ClassroomsShowAllJPanel(userProcessContainer);
+        ClassroomsShowAllJPanel classroomsShowAllJPanel = new ClassroomsShowAllJPanel(userProcessContainer,classrooms);
         userProcessContainer.add("classroomsShowAllJPanel", classroomsShowAllJPanel);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -248,7 +209,7 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
 
     private void btnManageImmunitionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageImmunitionActionPerformed
         // TODO add your handling code here:
-        ManageImmunitionRecordJPanel manageImmunitionRecordJPanel = new ManageImmunitionRecordJPanel(userProcessContainer);
+        ManageImmunitionRecordJPanel manageImmunitionRecordJPanel = new ManageImmunitionRecordJPanel(userProcessContainer,vaccine);
         userProcessContainer.add("manageImmunitionRecordJPanel", manageImmunitionRecordJPanel);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -261,6 +222,14 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnManageAlertActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+        LoginJPanel loginJPanel = new LoginJPanel(userProcessContainer);
+        userProcessContainer.add("loginJPanel", loginJPanel);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -298,22 +267,14 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnManageAlert;
     private javax.swing.JButton btnManageClassroom;
     private javax.swing.JButton btnManageImmunition;
     private javax.swing.JButton btnManageStudent;
     private javax.swing.JButton btnManageTeacher;
-    private javax.swing.JMenuItem exitMenuItem;
-    private javax.swing.JMenu fileMenu;
     private javax.swing.JPanel jPanel1;
-    public javax.swing.JMenu loginMenu;
-    public javax.swing.JMenuItem loginMenuItem;
-    public javax.swing.JMenuItem logoutMenuItem;
-    private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JLabel placeholderLabel;
-    private javax.swing.JMenuItem saveAsMenuItem;
-    private javax.swing.JMenuItem saveMenuItem;
     private javax.swing.JSplitPane splitPanel;
     public javax.swing.JScrollPane splitViewMenuScrollPanel;
     public javax.swing.JPanel userProcessContainerJPanel;
