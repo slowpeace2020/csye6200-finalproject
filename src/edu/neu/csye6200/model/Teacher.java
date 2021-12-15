@@ -97,6 +97,7 @@ public class Teacher extends Person {
 
     public Teacher(String csvData) {
         super();
+        System.out.println(csvData);
         String[] field = csvData.split(",");
         this.firstName  = field[0];
         this.lastName  = field[1];
@@ -105,7 +106,7 @@ public class Teacher extends Person {
         this.joiningDate = DataTypeSwitchUtil.StringToDate(field[4]);
         this.annualReviewDate = DataTypeSwitchUtil.StringToDate(field[4]);
         this.email = field[5];
-        this.credits = Integer.parseInt(field[5]);
+        this.credits = Integer.parseInt(field[6]);
         Calendar c = Calendar.getInstance();
 //        c.setTime(this.joiningDate);
         //c.add(c.WEEK_OF_YEAR, 51);
