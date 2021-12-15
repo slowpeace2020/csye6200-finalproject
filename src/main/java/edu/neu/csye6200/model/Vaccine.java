@@ -21,7 +21,6 @@ public class Vaccine implements Comparable<Vaccine>{
   }
 
     public Vaccine() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
   public String getImmunizationName() {
