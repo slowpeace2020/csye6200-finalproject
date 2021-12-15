@@ -1,5 +1,7 @@
 package edu.neu.csye6200.controller;
 
+import edu.neu.csye6200.controller.MailUtil;
+import edu.neu.csye6200.model.Person;
 import edu.neu.csye6200.model.Student;
 import edu.neu.csye6200.model.Vaccine;
 import edu.neu.csye6200.utils.DataTypeSwitchUtil;
@@ -19,11 +21,11 @@ public class ImmunizationContorller extends Controller<Vaccine>{
 
   private Map<String,Integer> requiredVaccineMap = new HashMap<>();
 
-
-
   public ImmunizationContorller() {
     this(defaultFilePath);
   }
+
+  private List<Person> alertList = new ArrayList<>();
 
   public ImmunizationContorller(String filePath) {
     requiredVaccineMap.put("DTaP",3);
@@ -132,5 +134,18 @@ public class ImmunizationContorller extends Controller<Vaccine>{
     return null;
   }
 
+  public List<Person> getAlert() {
+    StudentController sc = new StudentController();
+    sc.getList().forEach(s->{
+      if ( s.getImmuDetail()==null || s.getImmuDetail().isEmpty())
+        alertList.add(s);
+    });
+    return alertList;
+  }
 
+  public void alert() {
+    alertList.forEach(s->{
+      MailUtil.getInstance().sendMail(((Student) s).getGuardianEmail(), "Vaccine not get", ((Student) s).getImmuDetail());
+    });
+  }
 }

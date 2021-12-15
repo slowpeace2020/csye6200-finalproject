@@ -73,6 +73,10 @@ public class Student extends Person {
         return immuDetail;
     }
 
+    public String getGuardianEmail() {
+        return guardianEmail;
+    }
+
     public void setImmuDetail(String immuDetail) {
         this.immuDetail = immuDetail;
     }
