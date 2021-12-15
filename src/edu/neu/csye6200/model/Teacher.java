@@ -115,6 +115,19 @@ public class Teacher extends Person {
 
     @Override
     public String toString() {
+        return "Teacher{" +
+            "credits=" + credits +
+            ", teacherID=" + teacherID +
+            ", firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            ", birthDay=" + birthDay +
+            ", joiningDate=" + joiningDate +
+            ", annualReviewDate=" + annualReviewDate +
+            ", email='" + email + '\'' +
+            '}';
+    }
+
+    public String csvLine() {
         return firstName + '\'' +
             "," + lastName + '\'' +
             "," + birthDay +

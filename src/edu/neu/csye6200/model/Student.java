@@ -132,7 +132,6 @@ public class Student extends Person {
             ", birthDay=" + birthDay +
             ", registrationDate=" + registrationDate +
 //            ", immunisations=" + immunisations +
-            ", annualRegistrationDate=" + annualRegistrationDate +
-            '}';
+            ", annualRegistrationDate=" + annualRegistrationDate;
     }
 }
