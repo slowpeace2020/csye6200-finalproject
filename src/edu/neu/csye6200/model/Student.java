@@ -1,10 +1,10 @@
 package edu.neu.csye6200.model;
 
-import edu.neu.csye6200.model.immunisations.AbstractImmunization;
-import edu.neu.csye6200.model.immunisations.DTaPFactory;
-import edu.neu.csye6200.model.immunisations.HepatitisBFactory;
-import edu.neu.csye6200.model.immunisations.PneumococcalConjugateFactory;
-import edu.neu.csye6200.model.immunisations.RotavirusFactory;
+//import edu.neu.csye6200.model.immunisations.AbstractImmunization;
+//import edu.neu.csye6200.model.immunisations.DTaPFactory;
+//import edu.neu.csye6200.model.immunisations.HepatitisBFactory;
+//import edu.neu.csye6200.model.immunisations.PneumococcalConjugateFactory;
+//import edu.neu.csye6200.model.immunisations.RotavirusFactory;
 import edu.neu.csye6200.utils.DataTypeSwitchUtil;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -22,8 +22,19 @@ public class Student extends Person {
     private String guardianEmail;
     private Date birthDay;
     private Date registrationDate;
-    private List<AbstractImmunization> immunisations = new ArrayList<>();
+
+    public List<Vaccine> getVaccines() {
+        return vaccines;
+    }
+
+    public void setVaccines(List<Vaccine> vaccines) {
+        this.vaccines = vaccines;
+    }
+
+    private List<Vaccine> vaccines = new ArrayList<>();
     private Date annualRegistrationDate;
+
+    private String immuDetail;
 
 
     public Student(){}
@@ -56,6 +67,14 @@ public class Student extends Person {
 
     public void setStudentID(int studentID) {
         this.studentID = studentID;
+    }
+
+    public String getImmuDetail() {
+        return immuDetail;
+    }
+
+    public void setImmuDetail(String immuDetail) {
+        this.immuDetail = immuDetail;
     }
 
     public Student(String csvData) {
@@ -103,10 +122,10 @@ public class Student extends Person {
 
         }
 
-        immunisations.add(DTaPFactory.getInstance().getObject("DTaP",DTaP,getAge()));
-        immunisations.add(RotavirusFactory.getInstance().getObject("Rotavirus", rotavirus, getAge()));
-        immunisations.add(HepatitisBFactory.getInstance().getObject("Hepatitis B",hepatitisB, getAge()));
-        immunisations.add(PneumococcalConjugateFactory.getInstance().getObject("Pneumococcal Conjugate",pneumococcalConjugate, getAge()));
+//        immunisations.add(DTaPFactory.getInstance().getObject("DTaP",DTaP,getAge()));
+//        immunisations.add(RotavirusFactory.getInstance().getObject("Rotavirus", rotavirus, getAge()));
+//        immunisations.add(HepatitisBFactory.getInstance().getObject("Hepatitis B",hepatitisB, getAge()));
+//        immunisations.add(PneumococcalConjugateFactory.getInstance().getObject("Pneumococcal Conjugate",pneumococcalConjugate, getAge()));
 
     }
 
@@ -124,7 +143,7 @@ public class Student extends Person {
             ", guardianEmail='" + guardianEmail + '\'' +
             ", birthDay=" + birthDay +
             ", registrationDate=" + registrationDate +
-            ", immunisations=" + immunisations +
+//            ", immunisations=" + immunisations +
             ", annualRegistrationDate=" + annualRegistrationDate +
             '}';
     }

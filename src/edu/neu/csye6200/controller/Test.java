@@ -12,6 +12,8 @@ public class Test {
   public static void main(String[] args) {
     StudentController studentController = new StudentController();
     List<Student> students = studentController.getList();
+    ImmunizationContorller immunizationContorller = new ImmunizationContorller();
+    immunizationContorller.getImmunizationInfo(students);
     TeacherController teacherController = new TeacherController();
     List<Teacher> teachers = teacherController.getList();
     GroupController groupController = new GroupController(students,teachers);
