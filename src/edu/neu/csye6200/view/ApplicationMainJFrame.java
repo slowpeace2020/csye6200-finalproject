@@ -36,10 +36,14 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
 
         splitPanel = new javax.swing.JSplitPane();
         splitViewMenuScrollPanel = new javax.swing.JScrollPane();
-        jTree = new javax.swing.JTree();
+        jPanel1 = new javax.swing.JPanel();
+        btnManageStudent = new javax.swing.JButton();
+        btnManageTeacher = new javax.swing.JButton();
+        btnManageClassroom = new javax.swing.JButton();
+        btnManageImmunition = new javax.swing.JButton();
+        btnManageAlert = new javax.swing.JButton();
         splitViewContentPanel = new javax.swing.JPanel();
         placeholderLabel = new javax.swing.JLabel();
-        lblSelectedNode = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -59,28 +63,58 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
         splitViewMenuScrollPanel.setBackground(new java.awt.Color(102, 102, 102));
         splitViewMenuScrollPanel.setMinimumSize(new java.awt.Dimension(200, 23));
 
-        jTree.setBackground(new java.awt.Color(153, 153, 153));
-        jTree.setFont(new java.awt.Font("Lucida Grande", 1, 12)); // NOI18N
-        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
-        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Manage Student");
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Manage Parent");
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Manage Teacher");
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Manage Classroom");
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Immunition Work Area");
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Alert Work Area");
-        treeNode1.add(treeNode2);
-        jTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        jTree.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
-            public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
-                jTreeValueChanged(evt);
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+
+        btnManageStudent.setText("Manage Student Area");
+
+        btnManageTeacher.setText("Manage Teacher Area");
+        btnManageTeacher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageTeacherActionPerformed(evt);
             }
         });
-        splitViewMenuScrollPanel.setViewportView(jTree);
+
+        btnManageClassroom.setText("Manage Classroom Area");
+
+        btnManageImmunition.setText("Manage Immunition Area");
+
+        btnManageAlert.setText("Manage Alert Area");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnManageTeacher)
+                    .addComponent(btnManageImmunition)
+                    .addComponent(btnManageStudent)
+                    .addComponent(btnManageAlert, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnManageClassroom))
+                .addContainerGap(188, Short.MAX_VALUE))
+        );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnManageAlert, btnManageClassroom, btnManageImmunition, btnManageStudent, btnManageTeacher});
+
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(211, Short.MAX_VALUE)
+                .addComponent(btnManageStudent)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnManageTeacher)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnManageClassroom)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnManageImmunition)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnManageAlert, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnManageAlert, btnManageClassroom, btnManageImmunition, btnManageStudent, btnManageTeacher});
+
+        splitViewMenuScrollPanel.setViewportView(jPanel1);
 
         splitPanel.setLeftComponent(splitViewMenuScrollPanel);
 
@@ -91,10 +125,6 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
         placeholderLabel.setText("Select a panel from the left");
         placeholderLabel.setAlignmentX(0.5F);
         splitViewContentPanel.add(placeholderLabel, java.awt.BorderLayout.CENTER);
-
-        lblSelectedNode.setFont(new java.awt.Font("Bodoni MT", 1, 18)); // NOI18N
-        lblSelectedNode.setText("<View_selected_node>");
-        splitViewContentPanel.add(lblSelectedNode, java.awt.BorderLayout.PAGE_START);
 
         splitPanel.setRightComponent(splitViewContentPanel);
 
@@ -150,13 +180,9 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
-    private void jTreeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_jTreeValueChanged
-
-        DefaultMutableTreeNode selectedNode= (DefaultMutableTreeNode)jTree.getLastSelectedPathComponent();
-        if(selectedNode!=null){
-            lblSelectedNode.setText(selectedNode.toString());
-        }
-    }//GEN-LAST:event_jTreeValueChanged
+    private void btnManageTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageTeacherActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnManageTeacherActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,10 +220,14 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnManageAlert;
+    private javax.swing.JButton btnManageClassroom;
+    private javax.swing.JButton btnManageImmunition;
+    private javax.swing.JButton btnManageStudent;
+    private javax.swing.JButton btnManageTeacher;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
-    private javax.swing.JTree jTree;
-    private javax.swing.JLabel lblSelectedNode;
+    private javax.swing.JPanel jPanel1;
     public javax.swing.JMenu loginMenu;
     public javax.swing.JMenuItem loginMenuItem;
     public javax.swing.JMenuItem logoutMenuItem;

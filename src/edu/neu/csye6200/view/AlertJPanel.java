@@ -37,7 +37,7 @@ public class AlertJPanel extends javax.swing.JPanel {
            row[3]=p.getAge();
            
            model.addRow(row);
-           controller.alert();
+           //
        }
        
     }
@@ -90,6 +90,11 @@ public class AlertJPanel extends javax.swing.JPanel {
         btnAlert.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         btnAlert.setText("Alert");
         btnAlert.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnAlert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlertActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("Back");
 
@@ -127,6 +132,12 @@ public class AlertJPanel extends javax.swing.JPanel {
                 .addContainerGap(45, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAlertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlertActionPerformed
+        // TODO add your handling code here:
+        controller.alert();
+        
+    }//GEN-LAST:event_btnAlertActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

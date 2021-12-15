@@ -32,3 +32,4 @@ target/
 *.iml
 /bin/
 /nbproject/private/
+/build/
