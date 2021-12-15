@@ -231,7 +231,7 @@ public class ManageImmunitionRecordJPanel extends javax.swing.JPanel {
                 
                 
             
-           // }
+            }
 
             JOptionPane.showMessageDialog(null, " ImmunitionRecord added!", "Info", JOptionPane.INFORMATION_MESSAGE);
             }
