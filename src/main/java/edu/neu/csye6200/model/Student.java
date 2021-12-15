@@ -1,10 +1,6 @@
 package edu.neu.csye6200.model;
 
-//import edu.neu.csye6200.model.immunisations.AbstractImmunization;
-//import edu.neu.csye6200.model.immunisations.DTaPFactory;
-//import edu.neu.csye6200.model.immunisations.HepatitisBFactory;
-//import edu.neu.csye6200.model.immunisations.PneumococcalConjugateFactory;
-//import edu.neu.csye6200.model.immunisations.RotavirusFactory;
+
 import edu.neu.csye6200.utils.DataTypeSwitchUtil;
 import java.util.ArrayList;
 import java.util.Calendar;

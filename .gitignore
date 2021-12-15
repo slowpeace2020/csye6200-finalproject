@@ -34,3 +34,5 @@ target/
 /nbproject/private/
 /build/
 /dist/
+*/.DS_Store
+.DS_Store

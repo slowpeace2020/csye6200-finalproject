@@ -37,6 +37,7 @@ public class AlertJPanel extends javax.swing.JPanel {
        model.setRowCount(0);
         //Iterable<Person> alertList = null;
        List<Student> alertList = controller.getAlert();
+
        for(Student p : alertList){
            Object row[] = new Object[3];
            row[0]=p.getStudentID();

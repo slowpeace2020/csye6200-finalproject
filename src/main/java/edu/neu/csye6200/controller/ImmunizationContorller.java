@@ -119,7 +119,22 @@ public class ImmunizationContorller extends Controller<Vaccine>{
 
   @Override
   public void add(Vaccine vaccine) {
-    FileUtil.writeTextFile(defaultFilePath,vaccine.toString());
+      Date[] dates= new Date[3];
+    dates[0] = vaccine.getDose1Time();
+    dates[1] = vaccine.getDose2Time();
+    dates[2] = vaccine.getDose3Time();
+    for(Date date:dates){
+      if(date==null){
+        continue;
+      }
+
+      Vaccine addVaccine = new Vaccine();
+      addVaccine.setImmunizationName(vaccine.getImmunizationName());
+      addVaccine.setStudentId(vaccine.getStudentId());
+      addVaccine.setImmuDate(date);
+      FileUtil.writeTextFile(defaultFilePath,addVaccine.toString());
+    }
+
   }
 
   @Override
