@@ -5,13 +5,19 @@
  */
 package edu.neu.csye6200.view;
 
+import edu.neu.csye6200.controller.ClassRoomController;
+import edu.neu.csye6200.controller.GroupController;
 import edu.neu.csye6200.controller.ImmunizationContorller;
 import edu.neu.csye6200.controller.StudentController;
+import edu.neu.csye6200.controller.TeacherController;
+import edu.neu.csye6200.controller.Test;
 import edu.neu.csye6200.model.Classroom;
+import edu.neu.csye6200.model.Group;
 import edu.neu.csye6200.model.Student;
 import edu.neu.csye6200.model.Teacher;
 import edu.neu.csye6200.model.Vaccine;
 import java.awt.CardLayout;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,27 +29,42 @@ import javax.swing.tree.DefaultTreeModel;
  * @author ke
  */
 public class ApplicationMainJFrame extends javax.swing.JFrame {
+    
 
     /**
      * Creates new form ApplicationMainJFrame
      */
   
-     StudentController studentController = new StudentController();
-     List<Student> students;
-     List<Teacher> teachers;
-     List<Classroom>classrooms;
-     List<Vaccine> vaccine;
+     private StudentController studentController = new StudentController();
+     private List<Student> students = new ArrayList<>();
+     private List<Teacher> teachers = new ArrayList<>();
+     private List<Classroom>classrooms = new ArrayList<>();
+     private List<Vaccine> vaccine = new ArrayList<>();
         private Vaccine immuMap;
         ImmunizationContorller immunizationContorller;
         private Map<String,Integer> requiredVaccineMap = new HashMap<>();
     //CardLayout layout=(CardLayout)userProcessContainer.getLayout();
     public ApplicationMainJFrame() {
         initComponents();
-     
-        this.students = students;
-        this.teachers=teachers;
-        this.immuMap=immuMap;
         
+    StudentController studentController = new StudentController();
+    students = studentController.getList();
+    
+    ImmunizationContorller immunizationContorller = new ImmunizationContorller();
+    immunizationContorller.getImmunizationInfo(students);
+    vaccine = immunizationContorller.getList();
+    
+    TeacherController teacherController = new TeacherController();
+    teachers = teacherController.getList();
+    
+    GroupController groupController = new GroupController(students,teachers);
+    Map<Integer,List<Group>> groups = groupController.getGroups();
+    ClassRoomController classRoomController = new ClassRoomController(groups);
+    classrooms = classRoomController.getList();
+    
+        System.out.println(vaccine);
+    //this.immuMap=immuMap;
+    
     }
 
 
@@ -203,7 +224,7 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
 
     private void btnManageImmunitionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageImmunitionActionPerformed
         // TODO add your handling code here:
-        ManageImmunitionRecordJPanel manageImmunitionRecordJPanel = new ManageImmunitionRecordJPanel( userProcessContainer, immuMap, immunizationContorller);
+        ManageImmunitionRecordJPanel manageImmunitionRecordJPanel = new ManageImmunitionRecordJPanel( userProcessContainer, vaccine, immunizationContorller);
         userProcessContainer.add("manageImmunitionRecordJPanel", manageImmunitionRecordJPanel);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
