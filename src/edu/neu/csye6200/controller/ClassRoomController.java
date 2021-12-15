@@ -74,6 +74,7 @@ public class ClassRoomController extends Controller<Classroom>{
     for(int i = 0; i<numClassrooms; i++) {
       List<Group> subGroups = groupList.subList(temp,Math.min(temp+size,groupList.size()));
       Classroom classroom =  new Classroom(subGroups,size);
+      classroom.setId(i+1);
       temp = temp + size;
       classRoomList.add(classroom);
     }

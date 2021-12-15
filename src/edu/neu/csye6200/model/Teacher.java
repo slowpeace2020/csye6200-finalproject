@@ -103,12 +103,24 @@ public class Teacher extends Person {
         this.birthDay = DataTypeSwitchUtil.StringToDate(field[2]);
         this.teacherID = DataTypeSwitchUtil.StringToInt(field[3]);
         this.joiningDate = DataTypeSwitchUtil.StringToDate(field[4]);
+        this.annualReviewDate = DataTypeSwitchUtil.StringToDate(field[4]);
         this.email = field[5];
+        this.credits = Integer.parseInt(field[5]);
         Calendar c = Calendar.getInstance();
 //        c.setTime(this.joiningDate);
         //c.add(c.WEEK_OF_YEAR, 51);
         c.add(c.YEAR, 1);
         this.annualReviewDate = c.getTime();
+    }
+
+    @Override
+    public String toString() {
+        return firstName + '\'' +
+            "," + lastName + '\'' +
+            "," + birthDay +
+            "," + annualReviewDate +
+            ",'" + email + '\'' +
+            ",'" + credits + '\'';
     }
 }
 
