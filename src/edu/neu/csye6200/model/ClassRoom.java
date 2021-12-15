@@ -2,7 +2,7 @@ package edu.neu.csye6200.model;
 
 import java.util.*;
 
-public class Classroom {
+public class ClassRoom {
 
     public void setGroups(List<Group> groups) {
         this.groups = groups;
