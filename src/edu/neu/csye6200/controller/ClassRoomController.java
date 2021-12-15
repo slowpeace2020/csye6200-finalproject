@@ -2,14 +2,9 @@ package edu.neu.csye6200.controller;
 
 import edu.neu.csye6200.model.Classroom;
 import edu.neu.csye6200.model.Group;
-import edu.neu.csye6200.model.Student;
-import edu.neu.csye6200.model.Teacher;
-import edu.neu.csye6200.utils.FileUtil;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class ClassRoomController extends Controller<Classroom>{
 
@@ -74,6 +69,7 @@ public class ClassRoomController extends Controller<Classroom>{
     for(int i = 0; i<numClassrooms; i++) {
       List<Group> subGroups = groupList.subList(temp,Math.min(temp+size,groupList.size()));
       Classroom classroom =  new Classroom(subGroups,size);
+      classroom.setId(i+1);
       temp = temp + size;
       classRoomList.add(classroom);
     }

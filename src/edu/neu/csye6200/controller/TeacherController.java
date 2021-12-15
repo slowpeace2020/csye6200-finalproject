@@ -34,10 +34,11 @@ public class TeacherController extends Controller<Teacher> {
   @Override
   public void add(Teacher teacher) {
       teachers.add(teacher);
+      add(teacher.csvLine());
   }
 
   public void add(String  teacher) {
-    FileUtil.writeTextFile(teacher,defaultFilePath);
+    FileUtil.writeTextFile(defaultFilePath,teacher);
   }
 
   @Override

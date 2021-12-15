@@ -89,43 +89,13 @@ public class Student extends Person {
         this.phoneNumber = field[6];
         this.guardianName = field[7];
         this.guardianEmail = field[8];
+        this.gpa = Double.parseDouble(field[9]);
         setAge(DataTypeSwitchUtil.DateToAge(this.birthDay));
         Calendar c = Calendar.getInstance();
         c.setTime(this.registrationDate);
         c.add(c.YEAR, 1);
         this.annualRegistrationDate = c.getTime();
 
-        int flag = 0;
-        List<Date> hepatitisB = new ArrayList<>();
-        List<Date> DTaP = new ArrayList<>();
-        List<Date> rotavirus = new ArrayList<>();
-        List<Date> pneumococcalConjugate = new ArrayList<>();
-        for(int i = 9; i < 23; i++) {
-            System.out.println(field[i]);
-            if(field[i].contentEquals("0")) {
-
-            }
-            else {
-                if(i >= 9 && i < 12) {
-                    hepatitisB.add(DataTypeSwitchUtil.StringToDate(field[i]));
-                }
-                if(i >= 12 && i < 16) {
-                    DTaP.add(DataTypeSwitchUtil.StringToDate(field[i]));
-                }
-                if(i >= 16 && i < 19) {
-                    rotavirus.add(DataTypeSwitchUtil.StringToDate(field[i]));
-                }
-                if(i >= 19 && i < 23) {
-                    pneumococcalConjugate.add(DataTypeSwitchUtil.StringToDate(field[i]));
-                }
-            }
-
-        }
-
-//        immunisations.add(DTaPFactory.getInstance().getObject("DTaP",DTaP,getAge()));
-//        immunisations.add(RotavirusFactory.getInstance().getObject("Rotavirus", rotavirus, getAge()));
-//        immunisations.add(HepatitisBFactory.getInstance().getObject("Hepatitis B",hepatitisB, getAge()));
-//        immunisations.add(PneumococcalConjugateFactory.getInstance().getObject("Pneumococcal Conjugate",pneumococcalConjugate, getAge()));
 
     }
 
@@ -146,5 +116,22 @@ public class Student extends Person {
 //            ", immunisations=" + immunisations +
             ", annualRegistrationDate=" + annualRegistrationDate +
             '}';
+    }
+
+    public String csvLine(){
+        return "Student{" +
+            "gpa=" + gpa +
+            ", studentID=" + studentID +
+            ", age=" + getAge() +
+            ", firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            ", address='" + address + '\'' +
+            ", phoneNumber='" + phoneNumber + '\'' +
+            ", guardianName='" + guardianName + '\'' +
+            ", guardianEmail='" + guardianEmail + '\'' +
+            ", birthDay=" + birthDay +
+            ", registrationDate=" + registrationDate +
+//            ", immunisations=" + immunisations +
+            ", annualRegistrationDate=" + annualRegistrationDate;
     }
 }
