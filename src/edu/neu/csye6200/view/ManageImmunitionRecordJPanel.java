@@ -5,6 +5,10 @@
  */
 package edu.neu.csye6200.view;
 
+import java.awt.List;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ke
@@ -16,7 +20,28 @@ public class ManageImmunitionRecordJPanel extends javax.swing.JPanel {
      */
     public ManageImmunitionRecordJPanel() {
         initComponents();
+        populateTable();
     }
+    public void populateTable(){
+    
+       DefaultTableModel model = (DefaultTableModel) tblVaccineRecord.getModel();
+       model.setRowCount(0);
+      
+//          List<Immunization> list = new ArrayList<>();
+//          list.get(0).getDoes1Time();
+
+           for(Immunition m : immunitionList){
+            Object row[]= new Object[4];
+            row[0]=m;
+            row[1]=m.getDose1Time();
+            row[2]=m.getDose2Time();
+            row[3]=m.getDose3Time();
+            
+            model.addRow(row);        
+          
+       
+     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,7 +74,7 @@ public class ManageImmunitionRecordJPanel extends javax.swing.JPanel {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        cmbVaccineType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Type", "COVID-19", "MMR", "HPV", "Flu" }));
+        cmbVaccineType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Type", "DTaP", "HepatitisB", "PneumococcalConjugate", "Rotavirus" }));
         cmbVaccineType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbVaccineTypeActionPerformed(evt);
@@ -236,4 +261,8 @@ public class ManageImmunitionRecordJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtDose2Time;
     private javax.swing.JTextField txtDose3Time;
     // End of variables declaration//GEN-END:variables
+
+
+
+
 }

@@ -5,6 +5,9 @@
  */
 package edu.neu.csye6200.view;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ke
@@ -75,6 +78,11 @@ public class AddImmunitionRecordJPanel extends javax.swing.JPanel {
         });
 
         btnAddRecord.setText("Add");
+        btnAddRecord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddRecordActionPerformed(evt);
+            }
+        });
 
         lblVaccineType.setFont(new java.awt.Font("Lucida Grande", 1, 11)); // NOI18N
         lblVaccineType.setText("Vaccine Type:");
@@ -166,6 +174,42 @@ public class AddImmunitionRecordJPanel extends javax.swing.JPanel {
     private void cmbVaccineTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbVaccineTypeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbVaccineTypeActionPerformed
+
+    private void btnAddRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRecordActionPerformed
+        // TODO add your handling code here:
+        
+        if(cmbVaccineType.getSelectedItem().toString().isEmpty()==true|txtDose1Time.getText().isEmpty()==true|txtDose2Time.getText().isEmpty()==true|txtDose1Time.getText().isEmpty()==true)
+        { 
+            cmbVaccineType.setEditable(false);
+            txtDose1Time.setEnabled(false);
+            txtDose2Time.setEnabled(false);
+            txtDose3Time.setEnabled(false);
+            JOptionPane.showMessageDialog(null, "Items with * are  REQUIRED!!! Please renew the list.", "Info", JOptionPane.INFORMATION_MESSAGE);
+            
+        }else
+        {
+//           List<Immunization> list = new ArrayList<>();
+//           list.get(0).getDoes1();
+            
+            immunitionList = ImmunitionDirectory.getImmunitionList();
+            DefaultTableModel model1 =(DefaultTableModel) tblVaccineRecord.getModel();
+            for(Immunition m : immunitionList){
+            Object row[]= new Object[4];
+            row[0]=m;
+            row[1]=m.getDose1Time();
+            row[2]=m.getDose2Time();
+            row[3]=m.getDose3Time();
+            
+            model1.addRow(row);
+            JOptionPane.showMessageDialog(null, " ImmunitionRecord added!", "Info", JOptionPane.INFORMATION_MESSAGE);
+            }
+           
+           
+           
+        
+          }
+        
+    }//GEN-LAST:event_btnAddRecordActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
