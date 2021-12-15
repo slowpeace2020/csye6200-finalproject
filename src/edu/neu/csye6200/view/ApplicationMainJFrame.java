@@ -24,17 +24,16 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form ApplicationMainJFrame
      */
-   
-     private JPanel userProcessContainer;
+  
      StudentController studentController = new StudentController();
      List<Student> students;
      List<Teacher> teachers;
      List<Classroom>classrooms;
      List<Vaccine> vaccine;
-     
+    //CardLayout layout=(CardLayout)userProcessContainer.getLayout();
     public ApplicationMainJFrame() {
         initComponents();
-        this.userProcessContainer=userProcessContainer;
+     
         this.students = students;
         this.teachers=teachers;
         
@@ -59,8 +58,7 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
         btnManageImmunition = new javax.swing.JButton();
         btnManageAlert = new javax.swing.JButton();
         btnLogin = new javax.swing.JButton();
-        userProcessContainerJPanel = new javax.swing.JPanel();
-        placeholderLabel = new javax.swing.JLabel();
+        userProcessContainer = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -159,15 +157,8 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
 
         splitPanel.setLeftComponent(splitViewMenuScrollPanel);
 
-        userProcessContainerJPanel.setLayout(new java.awt.BorderLayout());
-
-        placeholderLabel.setForeground(new java.awt.Color(102, 102, 102));
-        placeholderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        placeholderLabel.setText("Select a panel from the left");
-        placeholderLabel.setAlignmentX(0.5F);
-        userProcessContainerJPanel.add(placeholderLabel, java.awt.BorderLayout.CENTER);
-
-        splitPanel.setRightComponent(userProcessContainerJPanel);
+        userProcessContainer.setLayout(new java.awt.CardLayout());
+        splitPanel.setRightComponent(userProcessContainer);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -225,8 +216,8 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        LoginJPanel loginJPanel = new LoginJPanel(userProcessContainer);
-        userProcessContainer.add("loginJPanel", loginJPanel);
+        LoginAreaJPanel loginAreaJPanel = new LoginAreaJPanel(userProcessContainer);
+        userProcessContainer.add("loginAreaJPanel", loginAreaJPanel);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnLoginActionPerformed
@@ -274,9 +265,8 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnManageStudent;
     private javax.swing.JButton btnManageTeacher;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel placeholderLabel;
     private javax.swing.JSplitPane splitPanel;
     public javax.swing.JScrollPane splitViewMenuScrollPanel;
-    public javax.swing.JPanel userProcessContainerJPanel;
+    public javax.swing.JPanel userProcessContainer;
     // End of variables declaration//GEN-END:variables
 }
