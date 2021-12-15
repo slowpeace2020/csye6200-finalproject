@@ -5,6 +5,10 @@
  */
 package edu.neu.csye6200.view;
 
+import edu.neu.csye6200.controller.ImmunizationContorller;
+import edu.neu.csye6200.model.Person;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ke
@@ -14,10 +18,29 @@ public class AlertJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ImmunitionJPanel
      */
+     ImmunizationContorller controller = new ImmunizationContorller();
     public AlertJPanel() {
         initComponents();
+        populateTable();
     }
-
+    private void populateTable() {
+       //To change body of generated methods, choose Tools | Templates.
+       
+       DefaultTableModel model = (DefaultTableModel) tblAlertList.getModel();
+       model.setRowCount(0);
+        Iterable<Person> alertList = null;
+       
+       for(Person p : alertList){
+           Object row[] = new Object[3];
+           row[0]=p;
+           row[1]=p.getName();
+           row[3]=p.getAge();
+           
+           model.addRow(row);
+           controller.alert();
+       }
+       
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,7 +82,7 @@ public class AlertJPanel extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Name", "Vaccine Type", "Vaccine Deadline"
+                "ID", "Name", "Age"
             }
         ));
         jScrollPane2.setViewportView(tblAlertList);
@@ -115,4 +138,6 @@ public class AlertJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblAlertTile;
     private javax.swing.JTable tblAlertList;
     // End of variables declaration//GEN-END:variables
+
+
 }
