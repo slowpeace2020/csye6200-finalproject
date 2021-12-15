@@ -30,9 +30,12 @@ public class ManageImmunitionRecordJPanel extends javax.swing.JPanel {
      */
         private List<Student> students;
         private JPanel userProcessContainer;
-        private List<Vaccine>immuMap;
-       
+    ImmunizationContorller immunizationContorller = new ImmunizationContorller();
+    //immunizationContorller.getImmunizationInfo(students);
+    List<Vaccine> immuMap = immunizationContorller.getList();
+        StudentController studentController;
         private Map<String,Integer> requiredVaccineMap = new HashMap<>();
+        
         
     //private Map<Integer,List<Vaccine>> immuMap;
 
@@ -40,15 +43,34 @@ public class ManageImmunitionRecordJPanel extends javax.swing.JPanel {
 //   List<Student> students = studentController.getList();
 //    ImmunizationContorller immunizationContorller = new ImmunizationContorller();
 //    immunizationContorller.getImmunizationInfo(students);
-    public ManageImmunitionRecordJPanel(JPanel userProcessContainer, Vaccine immuMap,ImmunizationContorller immunizationContorller) {
+    public ManageImmunitionRecordJPanel(JPanel userProcessContainer, Vaccine immuMap,ImmunizationContorller immunizationContorller,List<Student> students) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
-        this.immuMap=(List<Vaccine>) immuMap;
-        
-
-        
+        this.immuMap=immunizationContorller.getList();
+//        this.immuMap=(List<Vaccine>) immuMap;
+        this.students=students;
+        populatePersonVaccineList();
     }
-
+    private void populatePersonVaccineList() {
+         //To change body of generated methods, choose Tools | Templates.
+        DefaultTableModel modelv = (DefaultTableModel) tblVaccineRecord.getModel();
+        modelv.setRowCount(0);  
+        
+        for(Vaccine s : immuMap){
+        
+            String[] row = new String[5];
+            row[0] = String.valueOf(s.getStudentId());
+            row[1] = s.getImmunizationName();
+            row[2]= String.valueOf(s.getDose1Time());
+            row[3]= String.valueOf(s.getDose2Time());
+            row[4]= String.valueOf(s.getDose3Time());
+            
+            modelv.addRow(row);
+            
+        
+         }
+         
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -72,18 +94,28 @@ public class ManageImmunitionRecordJPanel extends javax.swing.JPanel {
         txtDose3Time = new javax.swing.JTextField();
         btnAddRecord = new javax.swing.JButton();
         lblVaccineType = new javax.swing.JLabel();
+        lblStudentID = new javax.swing.JLabel();
+        txtStudentID = new javax.swing.JTextField();
 
         tblVaccineRecord.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Vaccine Type", "Dose1 Time", "Dose2 Time", "Dose3 Time"
+                "ID", "Vaccine Type", "VaccineTime"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblVaccineRecord);
 
         btnBack.setText("Back");
@@ -99,7 +131,7 @@ public class ManageImmunitionRecordJPanel extends javax.swing.JPanel {
         lblDose1Time.setFont(new java.awt.Font("Lucida Grande", 1, 11)); // NOI18N
         lblDose1Time.setText("Dose1 Time(MM-DD-YYYY): ");
 
-        cmbVaccineType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Type", "COVID-19", "MMR", "HPV", "Flu" }));
+        cmbVaccineType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Type", "DTaP", "Rotavirus", "Hepatitis B", "Pneumococcal Conjugate" }));
         cmbVaccineType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbVaccineTypeActionPerformed(evt);
@@ -116,6 +148,9 @@ public class ManageImmunitionRecordJPanel extends javax.swing.JPanel {
         lblVaccineType.setFont(new java.awt.Font("Lucida Grande", 1, 11)); // NOI18N
         lblVaccineType.setText("Vaccine Type:");
 
+        lblStudentID.setFont(new java.awt.Font("Lucida Grande", 1, 11)); // NOI18N
+        lblStudentID.setText("ID:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -123,15 +158,17 @@ public class ManageImmunitionRecordJPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(lblDose2Time)
+                        .addComponent(lblVaccineType))
+                    .addComponent(lblStudentID))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblDose2Time)
-                            .addComponent(lblVaccineType))
-                        .addGap(26, 26, 26)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtDose2Time, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cmbVaccineType, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblDose3Time)
@@ -141,8 +178,9 @@ public class ManageImmunitionRecordJPanel extends javax.swing.JPanel {
                                 .addComponent(lblDose1Time)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtDose1Time, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 618, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtStudentID, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAddRecord, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -153,7 +191,11 @@ public class ManageImmunitionRecordJPanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnAddRecord)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnAddRecord)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblStudentID)
+                        .addComponent(txtStudentID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblVaccineType)
@@ -207,7 +249,7 @@ public class ManageImmunitionRecordJPanel extends javax.swing.JPanel {
     private void btnAddRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRecordActionPerformed
         // TODO add your handling code here:
         
-        if(cmbVaccineType.getSelectedItem().toString().isEmpty()==true|txtDose1Time.getText().isEmpty()==true|txtDose2Time.getText().isEmpty()==true|txtDose1Time.getText().isEmpty()==true)
+        if(cmbVaccineType.getSelectedItem().toString().isEmpty()==true)
         { 
             cmbVaccineType.setEditable(false);
             txtDose1Time.setEnabled(false);
@@ -225,6 +267,7 @@ public class ManageImmunitionRecordJPanel extends javax.swing.JPanel {
            ImmunizationContorller immunizationContorller = new ImmunizationContorller();
             for(int i=0;i<3;i++){
               Vaccine v = new Vaccine();
+               v.setStudentId(Integer.parseInt(txtStudentID.getText()));
                v.setImmunizationName(String.valueOf((cmbVaccineType.getSelectedItem())));
                v.setImmuDate(DataTypeSwitchUtil.StringToDate(txtDose1Time.getText()));  
                v.setImmuDate(DataTypeSwitchUtil.StringToDate(txtDose2Time.getText())); 
@@ -237,11 +280,12 @@ public class ManageImmunitionRecordJPanel extends javax.swing.JPanel {
             
           
            for(Vaccine m : immuMap){
-            Object row[]= new Object[4];
-            row[0]=m;
-            row[1]=m.getDose1Time();
-            row[2]=m.getDose2Time();
-            row[3]=m.getDose3Time();
+            Object row[]= new Object[5];
+            row[0] = m.getStudentId();
+            row[1]= m.getImmunizationName();
+            row[2]=m.getImmuDate();
+//            row[3]=m.getDose2Time();
+//            row[4]=m.getDose3Time();
 
             
             model1.addRow(row);  
@@ -268,10 +312,14 @@ public class ManageImmunitionRecordJPanel extends javax.swing.JPanel {
     public javax.swing.JLabel lblDose1Time;
     public javax.swing.JLabel lblDose2Time;
     public javax.swing.JLabel lblDose3Time;
+    public javax.swing.JLabel lblStudentID;
     public javax.swing.JLabel lblVaccineType;
     private javax.swing.JTable tblVaccineRecord;
     private javax.swing.JTextField txtDose1Time;
     private javax.swing.JTextField txtDose2Time;
     private javax.swing.JTextField txtDose3Time;
+    private javax.swing.JTextField txtStudentID;
     // End of variables declaration//GEN-END:variables
+
+
 }

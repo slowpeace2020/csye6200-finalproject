@@ -6,7 +6,9 @@
 package edu.neu.csye6200.view;
 
 import edu.neu.csye6200.controller.ImmunizationContorller;
-import edu.neu.csye6200.model.Person;
+import edu.neu.csye6200.model.Student;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,9 +22,11 @@ public class AlertJPanel extends javax.swing.JPanel {
      * Creates new form ImmunitionJPanel
      */
      ImmunizationContorller controller = new ImmunizationContorller();
+     //private List<Person> alertList;
     public AlertJPanel(JPanel userProcessContainer) {
         initComponents();
         populateTable();
+        
     }
 
    
@@ -31,13 +35,13 @@ public class AlertJPanel extends javax.swing.JPanel {
        
        DefaultTableModel model = (DefaultTableModel) tblAlertList.getModel();
        model.setRowCount(0);
-        Iterable<Person> alertList = null;
-       
-       for(Person p : alertList){
+        //Iterable<Person> alertList = null;
+       List<Student> alertList = controller.getAlert();
+       for(Student p : alertList){
            Object row[] = new Object[3];
-           row[0]=p;
-           row[1]=p.getName();
-           row[3]=p.getAge();
+           row[0]=p.getStudentID();
+           row[1]=p.getFirstName()+" "+p.getLastName();
+           row[2]=p.getAge();
            
            model.addRow(row);
            //
@@ -105,21 +109,21 @@ public class AlertJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblAlertTile, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnBack)
-                        .addGap(23, 23, 23))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(144, Short.MAX_VALUE)
                 .addComponent(btnAlert, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(217, 217, 217))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblAlertTile, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBack)))
+                .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -59,20 +59,14 @@
         <Component class="javax.swing.JTable" name="tblVaccineRecord">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="4">
+              <Table columnCount="3" rowCount="4">
+                <Column editable="true" title="ID" type="java.lang.Integer"/>
                 <Column editable="true" title="Vaccine Type" type="java.lang.Object"/>
-                <Column editable="true" title="Dose1 Time" type="java.lang.Object"/>
-                <Column editable="true" title="Dose2 Time" type="java.lang.Object"/>
-                <Column editable="true" title="Dose3 Time" type="java.lang.Object"/>
+                <Column editable="true" title="VaccineTime" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -117,17 +111,20 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="lblDose2Time" linkSize="1" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblVaccineType" linkSize="1" alignment="1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                          <Component id="lblDose2Time" linkSize="1" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblVaccineType" linkSize="1" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="lblStudentID" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtDose2Time" linkSize="1" min="-2" pref="114" max="-2" attributes="0"/>
                               <Component id="cmbVaccineType" linkSize="1" min="-2" pref="148" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="25" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="lblDose3Time" linkSize="1" min="-2" max="-2" attributes="0"/>
@@ -141,8 +138,9 @@
                               </Group>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="618" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="txtStudentID" min="-2" pref="160" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="btnAddRecord" min="-2" pref="116" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -154,7 +152,13 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnAddRecord" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="btnAddRecord" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblStudentID" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtStudentID" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblVaccineType" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -221,10 +225,10 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="5">
                 <StringItem index="0" value="Choose Type"/>
-                <StringItem index="1" value="COVID-19"/>
-                <StringItem index="2" value="MMR"/>
-                <StringItem index="3" value="HPV"/>
-                <StringItem index="4" value="Flu"/>
+                <StringItem index="1" value="DTaP"/>
+                <StringItem index="2" value="Rotavirus"/>
+                <StringItem index="3" value="Hepatitis B"/>
+                <StringItem index="4" value="Pneumococcal Conjugate"/>
               </StringArray>
             </Property>
           </Properties>
@@ -255,6 +259,19 @@
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblStudentID">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Lucida Grande" size="11" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="ID:"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtStudentID">
         </Component>
       </SubComponents>
     </Container>

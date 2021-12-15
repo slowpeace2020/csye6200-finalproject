@@ -18,14 +18,14 @@ public class ImmunizationContorller extends Controller<Vaccine>{
 
   private static String defaultFilePath =System.getProperty("user.dir")+"/data/immunization.csv";
   private Map<Integer,List<Vaccine>> immuMap;
-
+  private List<Vaccine> immuList;
   private Map<String,Integer> requiredVaccineMap = new HashMap<>();
 
   public ImmunizationContorller() {
     this(defaultFilePath);
   }
 
-  private List<Person> alertList = new ArrayList<>();
+  private List<Student> alertList = new ArrayList<>();
 
   public ImmunizationContorller(String filePath) {
     requiredVaccineMap.put("DTaP",3);
@@ -33,6 +33,7 @@ public class ImmunizationContorller extends Controller<Vaccine>{
     requiredVaccineMap.put("Hepatitis B",3);
     requiredVaccineMap.put("Pneumococcal Conjugate",3);
     immuMap = new HashMap<>();
+    immuList = new ArrayList<>();
     List<String> tempImmus = FileUtil.readTextFile(filePath);
     for(String record:tempImmus){
       String[] strings= record.split(",");
@@ -40,7 +41,9 @@ public class ImmunizationContorller extends Controller<Vaccine>{
       int studentId = Integer.parseInt(strings[1]);
       Date date = DataTypeSwitchUtil.StringToDate(strings[2]);
      List<Vaccine> vaccines = immuMap.getOrDefault(studentId,new ArrayList<>());
-     vaccines.add(new Vaccine(immuName,date,studentId));
+     Vaccine cur = new Vaccine(immuName,date,studentId);
+     vaccines.add(cur);
+     immuList.add(cur);
      immuMap.put(studentId,vaccines);
     }
 
@@ -111,7 +114,7 @@ public class ImmunizationContorller extends Controller<Vaccine>{
 
   @Override
   public List<Vaccine> getList() {
-    return null;
+    return immuList;
   }
 
   @Override
@@ -134,7 +137,7 @@ public class ImmunizationContorller extends Controller<Vaccine>{
     return null;
   }
 
-  public List<Person> getAlert() {
+  public List<Student> getAlert() {
     StudentController sc = new StudentController();
     sc.getList().forEach(s->{
       if ( s.getImmuDetail()==null || s.getImmuDetail().isEmpty())

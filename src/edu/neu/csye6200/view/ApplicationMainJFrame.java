@@ -34,7 +34,7 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
      List<Classroom>classrooms;
      List<Vaccine> vaccine;
         private Vaccine immuMap;
-        ImmunizationContorller immunizationContorller;
+        ImmunizationContorller immunizationContorller = new ImmunizationContorller();
         private Map<String,Integer> requiredVaccineMap = new HashMap<>();
     //CardLayout layout=(CardLayout)userProcessContainer.getLayout();
     public ApplicationMainJFrame() {
@@ -73,7 +73,10 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
         splitPanel.setDividerSize(10);
         splitPanel.setName(""); // NOI18N
 
+        splitViewMenuScrollPanel.setBackground(new java.awt.Color(102, 102, 102));
         splitViewMenuScrollPanel.setMinimumSize(new java.awt.Dimension(200, 23));
+
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 
         btnManageStudent.setText("Manage Student Area");
         btnManageStudent.addActionListener(new java.awt.event.ActionListener() {
@@ -203,7 +206,7 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
 
     private void btnManageImmunitionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageImmunitionActionPerformed
         // TODO add your handling code here:
-        ManageImmunitionRecordJPanel manageImmunitionRecordJPanel = new ManageImmunitionRecordJPanel( userProcessContainer, immuMap, immunizationContorller);
+        ManageImmunitionRecordJPanel manageImmunitionRecordJPanel = new ManageImmunitionRecordJPanel( userProcessContainer, immuMap, immunizationContorller, students);
         userProcessContainer.add("manageImmunitionRecordJPanel", manageImmunitionRecordJPanel);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);

@@ -112,6 +112,11 @@ public class StudentEnrollJPanel extends javax.swing.JPanel {
         jLabel13.setText("Immunization Records:");
 
         btnImm.setText("Jump to add immunization record");
+        btnImm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImmActionPerformed(evt);
+            }
+        });
 
         btnSave.setText("Save");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
@@ -306,9 +311,9 @@ public class StudentEnrollJPanel extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // back button
-//         userProcessContainer.remove(this);
-//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//        layout.previous(userProcessContainer);
+         userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
@@ -336,6 +341,13 @@ public class StudentEnrollJPanel extends javax.swing.JPanel {
        
        
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnImmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImmActionPerformed
+//        ManageImmunitionRecordJPanel studentsShowAllJPanel = new ManageImmunitionRecordJPanel(userProcessContainer, students, immuMap);
+//        userProcessContainer.add("studentsShowAllJPanel", studentsShowAllJPanel);
+//        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+//        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnImmActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
