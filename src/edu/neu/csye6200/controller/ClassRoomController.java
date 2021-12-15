@@ -1,19 +1,19 @@
 package edu.neu.csye6200.controller;
 
-import edu.neu.csye6200.model.ClassRoom;
+import edu.neu.csye6200.model.Classroom;
 import edu.neu.csye6200.model.Group;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class ClassRoomController extends Controller<ClassRoom>{
+public class ClassRoomController extends Controller<Classroom>{
 
-  public List<ClassRoom> getList() {
+  public List<Classroom> getList() {
     return classRoomList;
   }
 
 
-  private List<ClassRoom> classRoomList;
+  private List<Classroom> classRoomList;
   private Map<Integer,List<Group>> groups;
 
   private int[] classSizeByAge = new int[]{3,3,3,3,2,2};
@@ -26,7 +26,7 @@ public class ClassRoomController extends Controller<ClassRoom>{
   }
 
 
-  public List<ClassRoom> getClassRoomList() {
+  public List<Classroom> getClassRoomList() {
 
     for(Integer groupId:groups.keySet()){
       List<Group> groupList = groups.get(groupId);
@@ -38,23 +38,23 @@ public class ClassRoomController extends Controller<ClassRoom>{
   }
 
   @Override
-  public void add(ClassRoom classRoom) {
+  public void add(Classroom classRoom) {
 
   }
 
   @Override
-  public void update(ClassRoom classroom) {
+  public void update(Classroom classroom) {
 
   }
 
 
   @Override
-  public ClassRoom detail(ClassRoom classRoom) {
+  public Classroom detail(Classroom classRoom) {
     return null;
   }
 
   @Override
-  public ClassRoom query(ClassRoom classRoom) {
+  public Classroom query(Classroom classRoom) {
     return null;
   }
 
@@ -68,7 +68,7 @@ public class ClassRoomController extends Controller<ClassRoom>{
     System.out.println(numClassrooms);
     for(int i = 0; i<numClassrooms; i++) {
       List<Group> subGroups = groupList.subList(temp,Math.min(temp+size,groupList.size()));
-      ClassRoom classroom =  new ClassRoom(subGroups,size);
+      Classroom classroom =  new Classroom(subGroups,size);
       classroom.setId(i+1);
       temp = temp + size;
       classRoomList.add(classroom);

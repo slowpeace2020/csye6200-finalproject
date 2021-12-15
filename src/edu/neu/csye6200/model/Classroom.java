@@ -2,7 +2,7 @@ package edu.neu.csye6200.model;
 
 import java.util.*;
 
-public class ClassRoom {
+public class Classroom {
 
     public void setGroups(List<Group> groups) {
         this.groups = groups;
@@ -31,7 +31,7 @@ public class ClassRoom {
         this.size = size;
     }
 
-    public ClassRoom(List<Group> groups, int size) {
+    public Classroom(List<Group> groups, int size) {
         this.groups = groups;
         this.size = size;
     }

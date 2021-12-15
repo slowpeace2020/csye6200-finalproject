@@ -1,6 +1,6 @@
 package edu.neu.csye6200.controller;
 
-import edu.neu.csye6200.model.ClassRoom;
+import edu.neu.csye6200.model.Classroom;
 import edu.neu.csye6200.model.Group;
 import edu.neu.csye6200.model.Student;
 import edu.neu.csye6200.model.Teacher;
@@ -19,7 +19,7 @@ public class Test {
     GroupController groupController = new GroupController(students,teachers);
     Map<Integer,List<Group>> groups = groupController.getGroups();
     ClassRoomController classRoomController = new ClassRoomController(groups);
-    List<ClassRoom> classroomList = classRoomController.getList();
+    List<Classroom> classroomList = classRoomController.getList();
     System.out.println(classroomList);
   }
 
