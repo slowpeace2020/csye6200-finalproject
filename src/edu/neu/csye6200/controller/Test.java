@@ -13,16 +13,39 @@ public class Test {
   public static void main(String[] args) {
     StudentController studentController = new StudentController();
     List<Student> students = studentController.getList();
+    
     ImmunizationContorller immunizationContorller = new ImmunizationContorller();
     immunizationContorller.getImmunizationInfo(students);
     List<Vaccine> immuMap = immunizationContorller.getList();
+    
     TeacherController teacherController = new TeacherController();
     List<Teacher> teachers = teacherController.getList();
+    
     GroupController groupController = new GroupController(students,teachers);
     Map<Integer,List<Group>> groups = groupController.getGroups();
     ClassRoomController classRoomController = new ClassRoomController(groups);
     List<Classroom> classroomList = classRoomController.getList();
+    
     System.out.println(classroomList);
+  }
+  
+    public static void initialize(List<Student> students, List<Vaccine> immuMap, 
+            List<Teacher> teachers, List<Classroom> classroomList) {
+    StudentController studentController = new StudentController();
+    students = studentController.getList();
+    
+    ImmunizationContorller immunizationContorller = new ImmunizationContorller();
+    immunizationContorller.getImmunizationInfo(students);
+    immuMap = immunizationContorller.getList();
+    
+    TeacherController teacherController = new TeacherController();
+    teachers = teacherController.getList();
+    
+    GroupController groupController = new GroupController(students,teachers);
+    Map<Integer,List<Group>> groups = groupController.getGroups();
+    ClassRoomController classRoomController = new ClassRoomController(groups);
+    classroomList = classRoomController.getList();
+    
   }
 
 }
