@@ -57,31 +57,14 @@ public class ClassroomsShowAllJPanel extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        btnDelete = new javax.swing.JButton();
-        btnAdd = new javax.swing.JButton();
         btnModify = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblClassroom = new javax.swing.JTable();
-        btnViewDetail = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        btnDelete.setText("Delete");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-
-        btnAdd.setText("Add");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
 
         btnModify.setText("Modify");
         btnModify.addActionListener(new java.awt.event.ActionListener() {
@@ -92,25 +75,18 @@ public class ClassroomsShowAllJPanel extends javax.swing.JPanel {
 
         tblClassroom.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Classroom ID", "Age (Months)", "Group IDs"
+                "Classroom ID", "Teachers in the Classroom"
             }
         ));
         tblClassroom.setColumnSelectionAllowed(true);
         jScrollPane1.setViewportView(tblClassroom);
         tblClassroom.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-
-        btnViewDetail.setText("View Detail");
-        btnViewDetail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewDetailActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -120,13 +96,7 @@ public class ClassroomsShowAllJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnViewDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(136, 136, 136)
-                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnDelete)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(527, 527, 527)
                         .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -135,11 +105,7 @@ public class ClassroomsShowAllJPanel extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdd)
-                    .addComponent(btnDelete)
-                    .addComponent(btnViewDetail)
-                    .addComponent(btnModify))
+                .addComponent(btnModify)
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
@@ -195,7 +161,7 @@ public class ClassroomsShowAllJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 712, Short.MAX_VALUE)
+            .addGap(0, 723, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -213,21 +179,12 @@ public class ClassroomsShowAllJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDeleteActionPerformed
-
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddActionPerformed
-
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
-        // TODO add your handling code here:
+//        ClassroomModifyJPanel t = new ClassroomModifyJPanel(userProcessContainer, students, //, //);
+//        userProcessContainer.add("classroommodiJPanel",t);
+//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+//        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnModifyActionPerformed
-
-    private void btnViewDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewDetailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnViewDetailActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         populateTable();
@@ -241,10 +198,7 @@ public class ClassroomsShowAllJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnModify;
-    private javax.swing.JButton btnViewDetail;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -261,8 +215,10 @@ public class ClassroomsShowAllJPanel extends javax.swing.JPanel {
         for (Classroom s : classroomList){
             String[] row = new String[3];
             row[0] = String.valueOf(s.getId());
-            row[1] = String.valueOf(s.getAgeOfStudents());
-            row[2] = s.getGroups().toString();
+//            row[1] = String.valueOf(s.getAgeOfStudents());
+            for(Group p: s.getGroups()){
+              row[1] = p.getTeacher().toString();
+            }
             model.addRow(row);
             
         }
