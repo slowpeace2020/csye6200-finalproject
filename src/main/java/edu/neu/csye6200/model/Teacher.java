@@ -134,7 +134,7 @@ public class Teacher extends Person {
             "," + birthDay +
             "," + joiningDate +
             ",'" + email +
-            ",'" + credits+"\n";
+            ",'" + credits;
     }
 }
 

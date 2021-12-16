@@ -36,6 +36,7 @@ public class StudentController extends Controller<Student> {
   @Override
   public void add(Student student) {
     students.add(student);
+    System.out.println(student.csvLine());
     FileUtil.writeTextFile(student.csvLine(),defaultFilePath);
   }
 

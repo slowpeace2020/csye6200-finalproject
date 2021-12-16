@@ -191,13 +191,13 @@ public class Student extends Person {
 
         return firstName +","+
             lastName +","+
-            birthDay +","+
+            DataTypeSwitchUtil.DateToString(birthDay) +","+
             studentID +","+
-            registrationDate +","+
+            DataTypeSwitchUtil.DateToString(registrationDate) +","+
             address +","+
             phoneNumber +","+
             guardianName +","+
             guardianEmail +","+
-            gpa+"\n";
+            gpa;
     }
 }
