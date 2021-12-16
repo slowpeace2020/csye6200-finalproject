@@ -9,6 +9,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ *
+ * @author jiaogong
+ */
 public class GroupController extends Controller<Group> {
   private List<Student> students = new ArrayList<>();
   private List<Teacher> teachers = new ArrayList<>();
@@ -122,14 +126,12 @@ public class GroupController extends Controller<Group> {
 
 
   /**
-   *
-   * @param studs 待分配的学生列表
-   * @param size  每个团体的学生人数限制
+   * assign students to groups
+   * @param studs students list
+   * @param size  student group size
    */
   public List<Group>  getGoupListByAge(List<Student> studs, int size) {
-    System.out.println("allocate GoupList By Age");
-    System.out.println(studs);
-    System.out.println(size);
+
     int numGroups = (studs.size()+size-1)/size;
 
     List<Group> groupsByAge = new ArrayList<>();

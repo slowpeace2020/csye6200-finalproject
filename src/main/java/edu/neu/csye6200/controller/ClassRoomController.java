@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ *
+ * @author jiaogong
+ */
 public class ClassRoomController extends Controller<Classroom>{
 
   public List<Classroom> getList() {

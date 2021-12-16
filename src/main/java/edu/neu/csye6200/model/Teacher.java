@@ -129,12 +129,12 @@ public class Teacher extends Person {
     }
 
     public String csvLine() {
-        return firstName + '\'' +
-            "," + lastName + '\'' +
+        return firstName +
+            "," + lastName +
             "," + birthDay +
-            "," + annualReviewDate +
-            ",'" + email + '\'' +
-            ",'" + credits + '\'';
+            "," + joiningDate +
+            ",'" + email +
+            ",'" + credits+"\n";
     }
 }
 
