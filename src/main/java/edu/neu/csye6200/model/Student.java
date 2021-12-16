@@ -188,19 +188,16 @@ public class Student extends Person {
     }
 
     public String csvLine(){
-        return "Student{" +
-            "gpa=" + gpa +
-            ", studentID=" + studentID +
-            ", age=" + getAge() +
-            ", firstName='" + firstName + '\'' +
-            ", lastName='" + lastName + '\'' +
-            ", address='" + address + '\'' +
-            ", phoneNumber='" + phoneNumber + '\'' +
-            ", guardianName='" + guardianName + '\'' +
-            ", guardianEmail='" + guardianEmail + '\'' +
-            ", birthDay=" + birthDay +
-            ", registrationDate=" + registrationDate +
-//            ", immunisations=" + immunisations +
-            ", annualRegistrationDate=" + annualRegistrationDate;
+
+        return firstName +","+
+            lastName +","+
+            DataTypeSwitchUtil.DateToString(birthDay) +","+
+            studentID +","+
+            DataTypeSwitchUtil.DateToString(registrationDate) +","+
+            address +","+
+            phoneNumber +","+
+            guardianName +","+
+            guardianEmail +","+
+            gpa;
     }
 }

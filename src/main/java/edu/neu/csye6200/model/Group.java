@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Group {
         private Teacher teacher;
-        private List<Student> students = new ArrayList<>();
+        private List<Student> students;
         private int groupSize;
 
   public Group(Teacher teacher, List<Student> students, int groupSize) {

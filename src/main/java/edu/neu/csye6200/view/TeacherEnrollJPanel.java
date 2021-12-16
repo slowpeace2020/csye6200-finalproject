@@ -5,6 +5,8 @@
  */
 package edu.neu.csye6200.view;
 
+import edu.neu.csye6200.controller.StudentController;
+import edu.neu.csye6200.controller.TeacherController;
 import edu.neu.csye6200.model.Teacher;
 import edu.neu.csye6200.utils.DataTypeSwitchUtil;
 import java.awt.CardLayout;
@@ -275,11 +277,14 @@ public class TeacherEnrollJPanel extends javax.swing.JPanel {
        s.setFirstName(txtFName.getText());
        s.setLastName(txtLName.getText());
        s.setAge(Integer.parseInt(txtAge.getText()));
+       s.setTeacherID(Integer.parseInt(txtID.getText()));
        s.setBirthDay(DataTypeSwitchUtil.StringToDate(txtBday.getText()));
        s.setJoiningDate(DataTypeSwitchUtil.StringToDate(txtJoin.getText()));
       
        
        ts.add(s);
+       TeacherController teacherController = new TeacherController();
+       teacherController.add(s);
        JOptionPane.showMessageDialog(null, "Teacher Registered!");
        
        

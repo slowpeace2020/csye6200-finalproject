@@ -5,6 +5,7 @@
  */
 package edu.neu.csye6200.view;
 
+import edu.neu.csye6200.controller.StudentController;
 import edu.neu.csye6200.model.Student;
 import edu.neu.csye6200.utils.DataTypeSwitchUtil;
 import java.awt.CardLayout;
@@ -328,14 +329,19 @@ public class StudentEnrollJPanel extends javax.swing.JPanel {
        s.setFirstName(txtName.getText());
        s.setLastName(txtName1.getText());
        s.setAge(Integer.parseInt(txtAge.getText()));
+        System.out.println(txtBday.getText());
        s.setBirthDay(DataTypeSwitchUtil.StringToDate(txtBday.getText()));
        s.setPhoneNumber(txtPhone.getText());
+       s.setStudentID(Integer.parseInt(txtID.getText()));
        s.setAddress(txtAddress.getText());
        s.setRegistrationDate(DataTypeSwitchUtil.StringToDate(txtRegis.getText()));
+       s.setAnnualRegistrationDate(DataTypeSwitchUtil.StringToDate(txtRegis.getText()));
        s.setGuardianName(txtParName.getText());
        s.setGuardianEmail(txtParEmail.getText());
        
        students.add(s);
+       StudentController studentController = new StudentController();
+       studentController.add(s);
        JOptionPane.showMessageDialog(null, "Student Registered!");
        
        

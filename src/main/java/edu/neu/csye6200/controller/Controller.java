@@ -2,6 +2,10 @@ package edu.neu.csye6200.controller;
 
 import java.util.List;
 
+/**
+ *
+ * @author jiaogong
+ */
 public abstract class Controller<T> {
     public abstract List<T> getList();
     public abstract void add(T t);

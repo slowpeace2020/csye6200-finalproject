@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ *
+ * @author jiaogong
+ */
 public class StudentController extends Controller<Student> {
   private  List<Student> students;
   private static String defaultFilePath =System.getProperty("user.dir")+"/data/students.csv";
@@ -32,7 +36,8 @@ public class StudentController extends Controller<Student> {
   @Override
   public void add(Student student) {
     students.add(student);
-    FileUtil.writeTextFile(defaultFilePath,student.csvLine());
+    System.out.println(student.csvLine());
+    FileUtil.writeTextFile(student.csvLine(),defaultFilePath);
   }
 
   @Override
@@ -64,7 +69,7 @@ public class StudentController extends Controller<Student> {
 
   @Override
   public Student query(Student student) {
-    return null;
+    return detail(student);
   }
 
   public static void main(String[] args) {

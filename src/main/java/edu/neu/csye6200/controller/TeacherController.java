@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ *
+ * @author jiaogong
+ */
 public class TeacherController extends Controller<Teacher> {
    private  List<Teacher> teachers;
   private static String defaultFilePath =System.getProperty("user.dir")+"/data/teachers.csv";
@@ -22,7 +26,7 @@ public class TeacherController extends Controller<Teacher> {
     teachers= new ArrayList<>();
     List<String> tempTeachers = FileUtil.readTextFile(filePath);
     tempTeachers.forEach(teacher -> teachers.add(new Teacher(teacher)));
-    System.out.println(tempTeachers);
+//    System.out.println(tempTeachers);
 
   }
 
@@ -38,7 +42,7 @@ public class TeacherController extends Controller<Teacher> {
   }
 
   public void add(String  teacher) {
-    FileUtil.writeTextFile(defaultFilePath,teacher);
+    FileUtil.writeTextFile(teacher,defaultFilePath);
   }
 
   @Override
