@@ -9,6 +9,7 @@ import edu.neu.csye6200.controller.StudentController;
 import edu.neu.csye6200.model.Student;
 import java.awt.CardLayout;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -72,16 +73,21 @@ public class StudentsShowAllJPanel extends javax.swing.JPanel {
         });
 
         btnModify.setText("Modify");
+        btnModify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModifyActionPerformed(evt);
+            }
+        });
 
         tblStudent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "First Name", "Last Name", "Age (Months)", "Guardian Name", "Guardian Email", "Registration Date", "Birthday"
+                "ID", "First Name", "Last Name", "GPA", "Age (Months)", "Guardian Name", "Guardian Email", "Registration Date", "Birthday"
             }
         ));
         tblStudent.setColumnSelectionAllowed(true);
@@ -127,6 +133,11 @@ public class StudentsShowAllJPanel extends javax.swing.JPanel {
         jLabel1.setText("View Students");
 
         jButton2.setText("Refresh");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -161,7 +172,21 @@ public class StudentsShowAllJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
+        Integer selectedRow = tblStudent.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row from table");
+            return;
+        }
+        int id = Integer.parseInt(String.valueOf(tblStudent.getValueAt(selectedRow, 0)));
+        Student stu = new Student();
+        
+        for(Student s: students){
+          if(id == s.getStudentID()){
+              stu = s;
+          }
+      }
+        
+        students.remove(stu);
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -171,11 +196,39 @@ public class StudentsShowAllJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-       StudentEnrollJPanel s = new StudentEnrollJPanel(userProcessContainer, students);
+        StudentEnrollJPanel s = new StudentEnrollJPanel(userProcessContainer, students);
         userProcessContainer.add("studentEnrollJPanel", s);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
+        Integer selectedRow = tblStudent.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row from table");
+            return;
+        }
+        
+        
+        
+        int id = Integer.parseInt(String.valueOf(tblStudent.getValueAt(selectedRow, 0)));
+        Student stu = new Student();
+        
+        for(Student s: students){
+          if(id == s.getStudentID()){
+              stu = s;
+          }
+      }
+
+        StudentModifyJPanel s = new StudentModifyJPanel(userProcessContainer, stu);
+        userProcessContainer.add("studentModifyJPanel", s);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnModifyActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        populateTable();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -195,15 +248,16 @@ public class StudentsShowAllJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         
         for (Student s : students){
-            String[] row = new String[8];
+            String[] row = new String[9];
             row[0] = String.valueOf(s.getStudentID());
             row[1] = s.getFirstName();
             row[2] = s.getLastName();
-            row[3] = String.valueOf(s.getAge());
-            row[4] = s.getGuardianName();
-            row[5] = s.getGuardianEmail();
-            row[6] = String.valueOf(s.getRegistrationDate());
-            row[7] = String.valueOf(s.getBirthDay());
+            row[3] = String.valueOf(s.getGpa());
+            row[4] = String.valueOf(s.getAge());
+            row[5] = s.getGuardianName();
+            row[6] = s.getGuardianEmail();
+            row[7] = String.valueOf(s.getRegistrationDate());
+            row[8] = String.valueOf(s.getBirthDay());
             model.addRow(row);
             
         }
