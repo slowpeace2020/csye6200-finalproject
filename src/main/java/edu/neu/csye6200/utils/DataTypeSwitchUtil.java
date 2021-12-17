@@ -39,7 +39,7 @@ public class DataTypeSwitchUtil {
     int monthsDiff = todayDate.get(Calendar.MONTH) - bday.get(Calendar.MONTH);
     int ageInMonths = yearsInBetween*12 + monthsDiff;
 
-    return ageInMonths;
+    return yearsInBetween;
   }
 
   public static String DateToString(Date d) {
