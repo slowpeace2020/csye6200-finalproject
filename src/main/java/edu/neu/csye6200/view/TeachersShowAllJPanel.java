@@ -9,7 +9,6 @@ import edu.neu.csye6200.controller.TeacherController;
 import edu.neu.csye6200.model.Teacher;
 import java.awt.CardLayout;
 import java.util.List;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -75,11 +74,6 @@ public class TeachersShowAllJPanel extends javax.swing.JPanel {
         });
 
         btnModify.setText("Modify");
-        btnModify.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModifyActionPerformed(evt);
-            }
-        });
 
         tblTeacher.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -190,22 +184,7 @@ public class TeachersShowAllJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        
-        Integer selectedRow = tblTeacher.getSelectedRow();
-        if (selectedRow < 0) {
-            JOptionPane.showMessageDialog(null, "Please select a row from table");
-            return;
-        }
-         int id = Integer.parseInt(String.valueOf(tblTeacher.getValueAt(selectedRow, 0)));
-        Teacher stu = new Teacher();
-        
-        for(Teacher s: teachers){
-          if(id == s.getTeacherID()){
-              stu = s;
-          }
-      }
-        
-        teachers.remove(stu);
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -220,30 +199,6 @@ public class TeachersShowAllJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnAddActionPerformed
-
-    private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
-        Integer selectedRow = tblTeacher.getSelectedRow();
-        if (selectedRow < 0) {
-            JOptionPane.showMessageDialog(null, "Please select a row from table");
-            return;
-        }
-        
-        
-        
-        int id = Integer.parseInt(String.valueOf(tblTeacher.getValueAt(selectedRow, 0)));
-        Teacher stu = new Teacher();
-        
-        for(Teacher s: teachers){
-          if(id == s.getTeacherID()){
-              stu = s;
-          }
-      }
-
-        TeacherModifyJPanel s = new TeacherModifyJPanel(userProcessContainer, stu);
-        userProcessContainer.add("studentModifyJPanel", s);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnModifyActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

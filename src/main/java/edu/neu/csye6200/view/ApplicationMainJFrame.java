@@ -62,7 +62,7 @@ public class ApplicationMainJFrame extends javax.swing.JFrame {
     ClassRoomController classRoomController = new ClassRoomController(groups);
     classrooms = classRoomController.getList();
     
-        System.out.println(vaccine);
+//        System.out.println(vaccine);
     //this.immuMap=immuMap;
     
     }

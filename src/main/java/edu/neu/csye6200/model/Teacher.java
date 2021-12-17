@@ -97,7 +97,7 @@ public class Teacher extends Person {
 
     public Teacher(String csvData) {
         super();
-        System.out.println(csvData);
+//        System.out.println(csvData);
         String[] field = csvData.split(",");
         this.firstName  = field[0];
         this.lastName  = field[1];
