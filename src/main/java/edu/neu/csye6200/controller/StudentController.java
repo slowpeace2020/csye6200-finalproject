@@ -42,10 +42,10 @@ public class StudentController extends Controller<Student> {
 
   @Override
   public void update(Student student) {
-    for(Student cur:students){
+    for(int i=0;i<students.size();i++){
+      Student cur = students.get(i);
       if(cur.getStudentID()==student.getStudentID()){
-        students.remove(cur);
-        students.add(student);
+        students.set(i,student);
         break;
       }
     }
