@@ -53,7 +53,7 @@ public class Student extends Person {
         return gpa;
     }
 
-    public void setGpa(int gpa) {
+    public void setGpa(double gpa) {
         this.gpa = gpa;
     }
 
