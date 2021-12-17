@@ -47,10 +47,10 @@ public class TeacherController extends Controller<Teacher> {
 
   @Override
   public void update(Teacher teacher) {
-    for(Teacher cur:teachers){
+    for(int i=0;i<teachers.size();i++){
+      Teacher cur =  teachers.get(i);
       if(cur.getTeacherID()==teacher.getTeacherID()){
-        teachers.remove(cur);
-        teachers.add(teacher);
+        teachers.set(i,teacher);
         break;
       }
     }

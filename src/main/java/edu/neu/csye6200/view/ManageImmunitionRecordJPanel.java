@@ -64,7 +64,7 @@ public class ManageImmunitionRecordJPanel extends javax.swing.JPanel {
             String[] row = new String[5];
             row[0] = String.valueOf(s.getStudentId());
             row[1] = s.getImmunizationName();
-            row[2]= String.valueOf(s.getDose1Time());
+            row[2]= DataTypeSwitchUtil.DateToString(s.getImmuDate());
             row[3]= String.valueOf(s.getDose2Time());
             row[4]= String.valueOf(s.getDose3Time());
             
