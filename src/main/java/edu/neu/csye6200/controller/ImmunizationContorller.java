@@ -160,9 +160,32 @@ public class ImmunizationContorller extends Controller<Vaccine>{
     return alertList;
   }
 
+  private Thread t = null;
+
   public void alert() {
-    alertList.forEach(s->{
-      MailUtil.getInstance().sendMail(((Student) s).getGuardianEmail(), "Vaccine not get", ((Student) s).getImmuDetail());
+    if (t!=null) {
+      t.interrupt();
+    }
+    getAlert();
+    System.out.println(alertList.size());
+    t = new Thread(new Runnable() {
+      @Override
+      public void run() {
+        alertList.forEach(s->{
+          StringBuilder sb = new StringBuilder();
+          sb.append("hello, ").append(s.getFirstName()).append("\n\n");
+          sb.append("According to our record, you are not fully vaccine").append("\n\n");
+          sb.append("Best\n");
+          MailUtil.getInstance().sendMail(((Student) s).getGuardianEmail(), "Vaccine Reminder", sb.toString());
+        });
+      }
     });
+    System.out.println(1);
+    t.start();
+  }
+
+  public static void main(String[] args) {
+    ImmunizationContorller ic = new ImmunizationContorller();
+    ic.alert();
   }
 }
